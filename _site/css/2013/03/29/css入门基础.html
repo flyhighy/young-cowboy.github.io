@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/css/2013/03/29/css%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">CSS 入门基础</h1>
+    <p class="post-meta">Mar 29, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="css">CSS</h1>
+
+<p>参考资料：</p>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/CSS21/cascade.html">cascade</a> </li>
+</ul>
+
+<h2 id="section">概念</h2>
+
+<p>层叠样式表</p>
+
+<p>层叠：</p>
+
+<ul>
+  <li>开发者设置的样式</li>
+  <li>用户设置的样式</li>
+  <li>浏览器默认样式</li>
+</ul>
+
+<h2 id="section-1">选择器</h2>
+
+<p>为了选择出DOM树里的node，需要使用一些选择规则。</p>
+
+<h3 id="section-2">选择器类型</h3>
+
+<pre><code>* {height:100px;}; //通配符选择器
+div {height:100px;} //元素选择器
+
+.hd{height:100px;} //类选择器
+section.hd{height:100px;} //元素选择器+类选择器
+.important.warning {height:100px;} //ie7+ 选择同时包含这些类名的元素（类名的顺序不限）
+
+#hd{height:100px;} //ID选择器
+div#hd{height:100px;} //元素选择器+ID选择器
+
+a[href] {color:red;} //简单属性选择
+a[href][title] {color:red;} //同时有 href 和 title 属性的 HTML 超链接的文本设置为红色
+
+a[href="javascript:;"] {color:red;} //选择具体属性值的node
+p[class~="important"] {color: red;} //根据属性值中的词列表的某个词进行选择
+[abc^="def"] //选择 abc 属性值以 "def" 开头的所有元素
+[abc$="def"] //选择 abc 属性值以 "def" 结尾的所有元素
+[abc*="def"] //选择 abc 属性值中包含子串 "def" 的所有元素
+img[src|="figure"] //以指定值开头或相同选择
+
+h1 &gt; strong {color:red;} //选择h1后第一个子元素
+h1 + p {margin-top:50px;} //选择h1后的第一个p元素 ie7+
+h1 ~ p {margin-top:50px;} //通用兄弟选择器 ,选择出h1后所有p元素 ie7+
+</code></pre>
+
+<p>伪类选择出出现特殊效果/类型的元素</p>
+
+<pre><code>//锚伪类,注意规范顺序 link &gt; visited &gt; hover &gt; active
+a:link {color: #FF0000}		/* 未访问的链接 */
+a:visited {color: #00FF00}	/* 已访问的链接 */
+a:hover {color: #FF00FF}	/* 鼠标移动到链接上 */
+a:active {color: #0000FF}	/* 选定的链接 */
+
+//:focus focus时元素的特殊效果，ie下无效
+input:focus{background-color:yellow;}
+
+//:first-child 
+p:first-child {font-weight: bold;} //选择出第一个p
+</code></pre>
+
+<p>伪元素选择器针对本不是元素的元素选择 如文本信息</p>
+
+<pre><code>p:first-line{color:#ff0000;} //选择出p的第一行文本，设置样式
+p:first-letter //p首字母
+p:before //p内容之前
+P:after //p内容之后
+</code></pre>
+
+<h2 id="section-3">权限值</h2>
+
+<h3 id="section-4">选择器的权值</h3>
+
+<ul>
+  <li>内联样式 1000</li>
+  <li>id选择器 100</li>
+  <li>属性选择器和伪类 10</li>
+  <li>元素选择器和伪元素 1</li>
+  <li>
+    <p>其他的选择器（如：*） 为 0</p>
+
+    <pre><code>   *             {}  /* a=0 b=0 c=0 d=0 -&gt; specificity = 0,0,0,0 */
+   li            {}  /* a=0 b=0 c=0 d=1 -&gt; specificity = 0,0,0,1 */
+   li:first-line {}  /* a=0 b=0 c=0 d=2 -&gt; specificity = 0,0,0,2 */
+   ul li         {}  /* a=0 b=0 c=0 d=2 -&gt; specificity = 0,0,0,2 */
+   ul ol+li      {}  /* a=0 b=0 c=0 d=3 -&gt; specificity = 0,0,0,3 */
+   h1 + *[rel=up]{}  /* a=0 b=0 c=1 d=1 -&gt; specificity = 0,0,1,1 */
+   ul ol li.red  {}  /* a=0 b=0 c=1 d=3 -&gt; specificity = 0,0,1,3 */
+   li.red.level  {}  /* a=0 b=0 c=2 d=1 -&gt; specificity = 0,0,2,1 */
+   #x34y         {}  /* a=0 b=1 c=0 d=0 -&gt; specificity = 0,1,0,0 */
+   style=""          /* a=1 b=0 c=0 d=0 -&gt; specificity = 1,0,0,0 */
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="section-5">层叠的权值</h3>
+
+<p>用户设置 important &gt; 开发者设置 important &gt; 开发者设置 &gt; 用户设置 &gt; 浏览器默认</p>
+
+<h3 id="section-6">文件的权值</h3>
+
+<p>行内样式权重&gt;文件头部的style权重&gt;外部样式文件权重</p>
+
+<p>如果同为外部文件里的样式，选择器写法一样的情况下，后面的样式覆盖前面的</p>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

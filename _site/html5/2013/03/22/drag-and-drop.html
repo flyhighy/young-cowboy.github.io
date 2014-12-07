@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/html5/2013/03/22/drag-and-drop.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">HTML5 Drag & Drop</h1>
+    <p class="post-meta">Mar 22, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="drag-and-drop">Drag and Drop</h1>
+
+<p>参考资料</p>
+
+<ul>
+  <li><a href="http://www.html5rocks.com/en/tutorials/dnd/basics/">http://www.html5rocks.com/en/tutorials/dnd/basics/</a></li>
+</ul>
+
+<h2 id="section">浏览器支持情况</h2>
+
+<p>chrome 7+,safari 5+,firefox 3.6+,ie6 +(ie6+ 不完全支持，无dataTransfet属性)</p>
+
+<h2 id="section-1">事件执行顺序</h2>
+
+<p>dragstart –&gt; drag –&gt; dragenter –&gt; dragover –&gt; dragleave –&gt; drop –&gt; dragend</p>
+
+<h2 id="dom">使DOM对象有拖拽效果</h2>
+
+<p>添加draggable属性，draggable=”true”</p>
+
+<pre><code>&lt;li draggable="true" class=""&gt;A&lt;/li&gt;
+</code></pre>
+
+<h2 id="section-2">拖拽事件对象</h2>
+
+<h3 id="edatatransfer">e.dataTransfer</h3>
+
+<p>退拽对象用来传递的媒介</p>
+
+<h3 id="eeffectallowed">e.effectAllowed</h3>
+
+<p>拖拽运行类型值：none，copy，copyLink， copyMove,link,linkMove,move，all，uninitialized</p>
+
+<h3 id="edatatransfersetdataformatdata">e.datatransfer.setData(format,data)</h3>
+
+<p>为元素添加指定数据</p>
+
+<pre><code>e.dataTransfer.setData('text/html', this.innerHTML);
+</code></pre>
+
+<h3 id="edatatransfercleardataformat">e.datatransfer.clearData([format])</h3>
+
+<p>删除指定格式的数据，如果未指定，则删除当前元素所有数据</p>
+
+<h4 id="format">format</h4>
+
+<p>设置保存值类型 text/plain, image/jpeg, text/html,text/uri-list</p>
+
+<h3 id="edatatransfertypes-dragstart">e.datatransfer.types dragstart</h3>
+
+<p>事件出发时为元素存储数据的格式,外部文件的拖曳，则返回 files</p>
+
+<h3 id="edatatransfergetdataformat">e.datatransfer.getData(format)</h3>
+
+<p>返回指定数据，如果数据不存在，则返回空字符串</p>
+
+<h3 id="edatatransferfiles">e.datatransfer.files</h3>
+
+<p>如果是拖曳文件，返回文件列表FileList</p>
+
+<h3 id="edatatransfersetdragimageelement-x-y">e.datatransfer.setDragImage(element, x, y)</h3>
+
+<p>制定拖曳元素时跟随鼠标移动的图片，想，y分别为相对鼠标的坐标</p>
+
+<h3 id="edatatransferaddelementelement">e.datatransfer.addElement(element)</h3>
+
+<p>添加一起跟随拖曳的元素</p>
+
+<h3 id="section-3">注意</h3>
+
+<p>Event.preventDefault()</p>
+
+<p>阻止默认的些事件方法等执行。在ondragover中一定要执行preventDefault()，否则ondrop事件不会被触发。
+另外，如果是从其他应用软件或是文件中拖东西进来，尤其是图片的时候，默认的动作是显示这个图片或是相关信息，并不是真的执行drop。
+此时需要用用document的ondragover事件把它直接干掉。</p>
+
+<h2 id="jquerydatatransfer">让jquery支持dataTransfer</h2>
+
+<p>jquery早期并不支持event的dataTransfer。所以要push到 jQuery.event.props.push(“dataTransfer”);</p>
+
+<h2 id="demo">demo</h2>
+
+<ul>
+  <li><a href="/demo/dnd-demo.html">dnd-demo</a></li>
+</ul>
+
+<p>部分代码</p>
+
+<pre><code>&lt;ul class="demo-box demo-box3" id="J_BoxCtn"&gt;
+    &lt;li draggable="true" class=""&gt;A&lt;/li&gt;
+    &lt;li draggable="true" class=""&gt;B&lt;/li&gt;
+    &lt;li draggable="true" class=""&gt;C&lt;/li&gt;
+&lt;/ul&gt;
+
+
+jQuery.event.props.push("dataTransfer");
+var dnd = {
+    "dragstart" : function (e) {
+        this.classList.add('draging');
+        e.dataTransfer.setData('text/html', this.innerHTML);
+        temp = e.target;
+    },
+    "drag"      : function (e) {
+    },
+    "dragenter" : function (e) {
+        this.classList.add('over');
+    },
+    "dragover"  : function (e) {
+        e.preventDefault();
+    },
+    "dragleave" : function (e) {
+        this.classList.remove('over');
+    },
+    "drop"      : function (e) {
+        e.stopPropagation();
+        this.classList.remove('over');
+        temp.innerHTML = e.target.innerHTML;
+        this.innerHTML = e.dataTransfer.getData('text/html');
+    },
+    "dragend"   : function (e) {
+        this.classList.remove('draging');
+        this.classList.remove('over');
+    }
+};
+
+var temp = null;
+
+for (var i in dnd) {
+    $("#J_BoxCtn").on(i, "li", dnd[i]);
+}
+</code></pre>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

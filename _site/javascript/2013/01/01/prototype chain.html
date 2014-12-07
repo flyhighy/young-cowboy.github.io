@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/javascript/2013/01/01/prototype%20chain.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">javascript 原型链</h1>
+    <p class="post-meta">Jan 1, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="prototype-chain">Prototype Chain</h1>
+
+<p>参考资料：</p>
+
+<ul>
+  <li>《javascript权威指南 第六版》</li>
+  <li>《javascript高级程序设计 第二版》</li>
+</ul>
+
+<p>写在前面的话</p>
+
+<p>所谓的原型链就是一个一个的对象通过其__proto__属性连接起来的数据结构
+（链）。这个数据结构对JS的继承很重要。</p>
+
+<pre><code>object a		object b		object c
+|----------|    |---------|    |---------|    
+|__proto__----&gt; |__proto__----&gt;|__proto__----&gt; ...
+|----------|    |---------|    |---------|    
+</code></pre>
+
+<ul>
+  <li>js的世界里除了简单数据类型（Number，String，Boolean，Undefined，Null）就是复杂数据类型——对象，<strong>连作用域都是对象</strong>。
+    <ul>
+      <li>简单数据类型很简单，就是简单的数据段，直接赋值给变量，生存在<strong>栈</strong>中，<strong>因为它们的大小设置好后就不可以改变</strong>。</li>
+      <li>复杂数据类型很复杂，由多类型值组成，生存在<strong>堆</strong>中，栈中的变量只有对这个复杂数据类型的内存引用，<strong>设置好后可能会发生变化</strong>。</li>
+      <li>有些语言（java，c#)把字符串设置为对象，但是<strong>js放弃</strong>了。</li>
+    </ul>
+  </li>
+  <li>每个对象都有一个__proto__属性，它默认指向另一个对象（构造这个对象的构造器的prototype属性指向的对象）或者为null（null是一个空对象，什么也没有,Object.prototype.__proto__===null），现代浏览器都支持你访问到这个属性。</li>
+  <li>当引擎读取一个对象的属性时，引擎先找自身的是否有个这个属性，没有的话按照自身的__proto__属性指向的对象查找，一直递归查询到Object.prototype指向的对象为止，因为Object.prototype.__proto__===null。</li>
+  <li>每个Function对象（包括Function自己）都有一个prototype属性，它指向一个对象，这个对象有一个constructor属性默认指向这个引用对象函数对象。</li>
+  <li>js中的函数是一个对象，一个特殊的对象。</li>
+</ul>
+
+<h2 id="section">1 函数对象和对象</h2>
+
+<p>可以说函数对象是对象扩展，相比普通对象函数对象多了一个<strong>逻辑代码</strong>+<strong>prototype</strong>属性。prototype属性指向一个对象，这个对象有一个constructor属性指向函数对象。</p>
+
+<p><img src="/images/function.png" alt="function" /></p>
+
+<p><img src="/images/object.png" alt="function" /></p>
+
+<h2 id="new">2 new操作符</h2>
+
+<p>当我们使用new调用构造函数时会自动的创建一个对象，因此构造函数本身只要初始化这个新对象的状态。调用构造函数的一个特征就是把构造函数的<strong>prototype</strong>属性被用作新对象的原型,即新对象的__proto__属性会指向构造函数的prototype指向的对象。多个对象的__proto__都指向同一个prototype对象。</p>
+
+<h2 id="section-1">3 函数执行的本质</h2>
+<p>当我们调用一个函数时是这样的：查找函数对象中逻辑代码，执行之。</p>
+
+<h2 id="section-2">4 构造函数和函数</h2>
+
+<p>2个都是函数，只不过是调用的方式不同导致他们叫法不一样。当使用new操作符调用函数时函数叫构造器，使用(),apply,call时叫函数。</p>
+
+<h2 id="instanceof">instanceof运算符的原理</h2>
+
+<pre><code>A instanceof B
+</code></pre>
+
+<p>流程：先计算B.prototype，然后查询A.__proto__判断是否相同，不同则继续沿着A.__proto__.__proto__查找是否相同（也就是沿着原型链查找），直到原型链的头Object.prototype.__proto__。</p>
+
+<h2 id="objectfunction">5 Object，Function</h2>
+
+<p>Object是所有对象直接或者间接构造器，Function是所有函数的直接或者间接构造器，但是他们指向的对象都是函数对象。</p>
+
+<h3 id="section-3">5.1 谁是上帝</h3>
+
+<p>回想下instanceof的原理吧。</p>
+
+<pre><code>Function instanceof Function;
+Function instanceof Object;
+Object instanceof Function;
+Object instanceof Object;
+</code></pre>
+
+<p><img src="/images/prototype.jpg" alt="prototype chain" /></p>
+
+<h2 id="test">6 TEST</h2>
+
+<pre><code>Object.prototype.sth = "O";
+Function.prototype.sth = "F";
+function f() {
+    return function () {
+        return sth;
+    }
+}
+alert(f()());
+</code></pre>
+
+<h3 id="section-4">6.1 提示</h3>
+
+<ul>
+  <li>作用域在js里也是对象，查找变量也是在作用域对象中查找的。</li>
+  <li>typeof window === ‘object’</li>
+</ul>
+
+<h3 id="section-5">6.2 解释变量的二维查找</h3>
+
+<p>引擎先查找返回的匿名函数的作用域对象，发现没有sth变量，进而沿着作用域链的第二位查找f的作用域对象，发现也没有，接着查找globel（window）作用域对象，发现也没有。接着沿着window的原型查找,发现Object.prototype.sth = “O”，所以…</p>
+
+<pre><code>window.__proto__===Window.prototype;//true
+Window.__proto__===Object.prototype;//true
+window instanceof Window;//true
+window instanceof Object;//true
+</code></pre>
+
+<h2 id="section-6">7 原型链的优势</h2>
+
+<p>代码复用，构造出的对象节省内存空间。</p>
+
+<h2 id="delete">8 深入delete操作符</h2>
+
+<p>delete可以删除对象的属性，它的操作数应该是一个属性访问表达式，它只能删除对象<strong>自身的属性</strong>，不能删除原型链上的属性。</p>
+
+<p>注意</p>
+
+<ul>
+  <li>
+    <p>如果对象没有这个属性，或者操作数不是属性表达式，返回true</p>
+
+    <pre><code>  var a = {};
+  delete a.b;//true
+  a.b = 1;
+  console.info(a.b);//1
+  delete a.b;//true
+  console.info(a.b);//undefined
+  delete 1;//true
+</code></pre>
+  </li>
+  <li>
+    <p>但是如果删除的是全局属性，则可以省略对全局对象的引用，直接删除</p>
+
+    <pre><code>  window.a = 1;
+  delete a;//true
+  console.info(typeof window.a);//undefined
+</code></pre>
+  </li>
+  <li>
+    <p>当delete删除一些不可以删除的属性返回false，全局环境声明的变量、函数是无法删除的。</p>
+
+    <pre><code>  var a = 1;
+  function f(){};
+  console.info(window.a);//1
+  delete a;//false
+  delete f;//false
+  delete window.a;//false
+  delete window.f;//false
+  console.info(window.a);//1
+  console.info(window.f);//function f(){}
+</code></pre>
+  </li>
+  <li>
+    <p>eval执行的代码中声明的变量，函数是可以删除的，<strong>控制台的代码是放在eval中执行的</strong>。</p>
+
+    <pre><code>  eval("var a=1;function f(){};");
+
+  console.info(a);//1
+  console.info(f);//function f(){}
+
+  delete a;//true
+  delete f;//true
+
+  console.info(typeof a);//undefined
+  console.info(typeof f);//undefined
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="test-1">8.1 test</h3>
+
+<pre><code>delete document.getElementById//true
+document.hasOwnProperty("getElementById");//false 表明getElementById不是document的属性。
+document.__proto__==HTMLDocument.prototype;//HTMLDocument是document的构造函数
+HTMLDocument.prototype.hasOwnProperty("getElementById");//getElementById也不是HTMLDocument.prototype属性。
+HTMLDocument.prototype.__proto__===Document.prototype;//true
+Document.prototype.hasOwnProperty("getElementById");//true
+document.__proto__.__proto__===Document.prototype;//沿着原型链可以看到getElementById属性来自Document.prototype。
+delete Document.prototype.getElementById;//无法删除这个属性。
+Document.prototype.getElementById=null;//修改这个属性
+document.getElementById("xx");//TypeError: Property 'getElementById' of object #&lt;HTMLDocument&gt; is not a function
+</code></pre>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

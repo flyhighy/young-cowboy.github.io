@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/http/2013/03/30/cookie%E5%AD%A6%E4%B9%A0.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">cookie探索</h1>
+    <p class="post-meta">Mar 30, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="cookie">Cookie</h1>
+
+<p>最早由netscape发明，cookie由服务器生成，当浏览器接收response后把根据HTTP响应头把cookie放置在某个目录下，且下一次访问同一网站时发送给server。</p>
+
+<p>server可以通过cookie技术在客户端存储少量信息。且可以根据cookie机制读取上次在客户端存储的cookie信息，以达到识别用户等功能。</p>
+
+<h2 id="cookie-">cookie 属性</h2>
+
+<h3 id="key-value">key value</h3>
+
+<p>不能有 “:” “;” “ “</p>
+
+<h3 id="section">有效期</h3>
+
+<p>默认的有效期是浏览器会话期间，存活在浏览器进程期。可以通过设置max-age属性设置存活期，这样cookie的信息就会持久化。</p>
+
+<h3 id="section-1">作用域</h3>
+
+<p>默认情况下创建的cookie的作用域属于该页面、该页面同目录的页面和该页面的目录的子目录页面。</p>
+
+<p>想改变cookie的作用域，可以通过path属性设置cookie的作用域路径。</p>
+
+<h4 id="path">path</h4>
+
+<p>在http://jan423.github.com/blog/index.html设置一个cookie，默认情况下，该cookie的作用域属于/blog/目录下的请求和其子目录的请求。</p>
+
+<p>当设置了path = /，那cookie的作用域属于这个域名下所有请求。</p>
+
+<h4 id="section-2">子域名</h4>
+
+<p>设置domian为域名的子域名。这样cookie可以在具有同一个域名下的子域名共享，默认为设置改cookie的域名。</p>
+
+<h4 id="secure">secure</h4>
+
+<p>默认为空，表示改cookie会已不安全的http协议传输，若设置为secure则表示使用https安全传输。</p>
+
+<p>在https协议下的页面里</p>
+
+<pre><code>document.cookie="name=value;max-age=33333333;secure"
+</code></pre>
+
+<h4 id="httponly">HttpOnly</h4>
+
+<p>为了防止js可以读取cookie触发安全问题，可以在响应头里添加HttpOnly属性，使得cookie不能在js里读取，只能通过http协议读取到</p>
+
+<h2 id="cookie-1">操作cookie</h2>
+
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

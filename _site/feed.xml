@@ -6,35 +6,1186 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 07 Dec 2014 20:28:25 +0800</pubDate>
-    <lastBuildDate>Sun, 07 Dec 2014 20:28:25 +0800</lastBuildDate>
+    <pubDate>Sun, 07 Dec 2014 21:26:50 +0800</pubDate>
+    <lastBuildDate>Sun, 07 Dec 2014 21:26:50 +0800</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
-        <title>小牛仔的blog test</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+        <title>买固态硬盘的故事</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;买固态硬盘的故事&lt;/h1&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;p&gt;计算机的性能瓶颈已经不在处理数据这块了，而是在数据读写。常常看到自己的电脑的硬盘灯在不停的闪，应用程序卡在那里让人捉急。所以该换一个固态硬盘了。&lt;/p&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;先了解下固态硬盘所使用的硬件与ROM的关系~&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;rom&quot;&gt;ROM类型&lt;/h2&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;由于历史原因ROM中有的类型可以读也可以写，可以根据其重编程（写）的次数和对其重编程的机制区分不同的ROM&lt;/p&gt;
+
+&lt;h3 id=&quot;prom&quot;&gt;PROM&lt;/h3&gt;
+
+&lt;p&gt;Programmable read only memory，可编程程序只读内存。&lt;/p&gt;
+
+&lt;p&gt;内部结构：内部有行列式的镕丝，是需要利用电流将其烧断，写入所需的资料，但仅能写录一次。&lt;/p&gt;
+
+&lt;h3 id=&quot;eprom&quot;&gt;EPROM&lt;/h3&gt;
+
+&lt;p&gt;Erasable Programmable Read Only Memory 可抹除可编程只读内存&lt;/p&gt;
+
+&lt;p&gt;利用强紫外线可以清楚存储的信息。&lt;/p&gt;
+
+&lt;h3 id=&quot;eeprom&quot;&gt;EEPROM&lt;/h3&gt;
+
+&lt;p&gt;Electrically Erasable Programmable Read Only Memory 电子式可抹除可编程只读内存&lt;/p&gt;
+
+&lt;p&gt;利用电场可以擦拭数据。&lt;/p&gt;
+
+&lt;h3 id=&quot;flash-memory&quot;&gt;Flash Memory&lt;/h3&gt;
+
+&lt;p&gt;Flash memory 快闪存储器&lt;/p&gt;
+
+&lt;p&gt;其每一个记忆胞都具有一个“控制闸”与“浮动闸”，利用高电场改变浮动闸的临限电压即可进行编程动作。相对于其他可擦拭的ROM，Flash可以达到局部擦拭。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;固态硬盘&lt;/h2&gt;
+
+&lt;p&gt;可以是使用Flash Memory 或者是 DRAM 作为存储单元。不同在于DRAM要持续供电，否则数据会丢失。&lt;/p&gt;
+
+&lt;p&gt;NOR和NAND是现在市场上两种主要的非易失闪存技术。NORFlash的读取和我们常见的SDRAM的读取是一样，用户可以直接运行装载在NORFLASH里面的代码，这样可以减少SRAM的容量从而节约了成本。NANDFlash没有采取内存的随机读取技术，它的读取是以一次读取一块的形式来进行的，通常是一次读取512个字节，采用这种技术的Flash比较廉价。&lt;/p&gt;
+
+&lt;p&gt;根据每个存储单元能够储存的信息量，NAND闪存又被分为三类：&lt;strong&gt;SLC&lt;/strong&gt; 、&lt;strong&gt;MLC&lt;/strong&gt; 、&lt;strong&gt;TLC&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;SLC的每个存储单元内存储1个Bit，称为单阶存储单元（Single-LevelCell，SLC），速度最快，耐久度最高，价格也最高。主要用于服务器市场上。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MLC的每个存储单元内存储2个Bit，因此叫多阶存储单元（Multi-LevelCell，MLC），速度比SLC慢,耐久度也比SLC低一些，当价格也降低了，更容易被消费级市场接受。正是MLC将SSD带入了家用可接受的成本范围内，推进了SSD的普及。MLC取得了速度、耐久度与成本之间的良好均衡。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;TLC（三阶存储单元，Triple-LevelCell，TLC）的每个存储单元内可以存储3个Bit。由于每个单元可以存储更多的数据，TLC的成本进一步降低，但是随之而来的是写入速度和耐久度的再次降低。当前TLCNAND主要用于U盘、存储卡一类对于数据安全性要求不太高的领域。三星已经开始在最新的840系列SSD上试水TLCNAND，不过TLC在SSD上的使用经验还是较少，耐久度仍存疑问，尤其是三星从未公布过自己产品的耐久度参数。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 20 Mar 2014 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/%E7%94%9F%E6%B4%BB/2014/03/20/%E4%B9%B0%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E7%9A%84%E6%95%85%E4%BA%8B.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/%E7%94%9F%E6%B4%BB/2014/03/20/%E4%B9%B0%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E7%9A%84%E6%95%85%E4%BA%8B.html</guid>
+        
+        
+        <category>生活</category>
+        
+      </item>
+    
+      <item>
+        <title>MongoDB CRUD</title>
+        <description>&lt;h1 id=&quot;mongodb&quot;&gt;Mongodb&lt;/h1&gt;
+
+&lt;h2 id=&quot;crud&quot;&gt;CRUD&lt;/h2&gt;
+
+&lt;h3 id=&quot;creat&quot;&gt;creat&lt;/h3&gt;
+
+&lt;p&gt;插入文档很简单，检测是否有_id、是否超过4mb，然后接卸为BSON。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;db.user.insert(docuemnt)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;remove&quot;&gt;remove&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;db.user.remove(condition)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;update--upsert&quot;&gt;update &amp;amp; upsert&lt;/h3&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;普通查询后更新文档&lt;/h4&gt;
+
+&lt;h4 id=&quot;modifier&quot;&gt;使用modifier&lt;/h4&gt;
+
+&lt;p&gt;只修改文档的一部分的话，使用modifier修改文档效率更高。&lt;/p&gt;
+
+&lt;h4 id=&quot;setunset&quot;&gt;$set,$unset&lt;/h4&gt;
+
+&lt;p&gt;设置值，若不存在则插入新的，存在则更新&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;db.stu.update({age:12,name:&quot;zj&quot;},{&quot;$set&quot;:{sex:&quot;male&quot;}})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;删除值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;db.stu.update({age:12,name:&quot;zj&quot;},{&quot;$unset&quot;:{sex:1}})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;inc&quot;&gt;$inc&lt;/h4&gt;
+
+&lt;p&gt;在原先的整数，长整型，浮点的基础上加/减值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;db.stu.update({age:12,name:&quot;zj&quot;},{&quot;$inc&quot;:{age:10}})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;数组操作&lt;/h4&gt;
+
+&lt;h5 id=&quot;pushaddtoseteachpoppull&quot;&gt;$push,$addToSet,$each,$pop,$pull,$&lt;/h5&gt;
+
+&lt;p&gt;$push&lt;/p&gt;
+
+&lt;p&gt;push一个数组&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;db.stu.update({age:22},{$push:{like:&quot;apple&quot;}})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;addToSet具有set的属性，数组中有相似的就不push&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;db.stu.update({age:22},{$addToSet:{like:&quot;apple&quot;}})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;pop使用个数从数组中删除元素，1表示尾，-1表示从头开始删除&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;db.stu.update({},{$pop:{like:1}})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;pull使用的是查询条件，删除匹配&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; db.stu.update({age:22},{$pull:{&quot;like&quot;:&quot;orange&quot;}})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;upsert&quot;&gt;upsert&lt;/h4&gt;
+
+&lt;p&gt;update 的第三个参数为true时表示改update为upsert，upsert的好处是将update &amp;amp;&amp;amp; insert 变为原子性。&lt;/p&gt;
+
+&lt;h3 id=&quot;retrieve&quot;&gt;retrieve&lt;/h3&gt;
+
+&lt;h4 id=&quot;find&quot;&gt;find&lt;/h4&gt;
+
+&lt;p&gt;必须使用常量来进行查找&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;db.stu.find() //db.stu.find({})
+db.stu.find({age:22})
+db.stu.find({age:20,name:&quot;Jan&quot;})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;lt-ltegtgte-no&quot;&gt;$lt, $lte,$gt,$gte, $no&lt;/h4&gt;
+</description>
+        <pubDate>Sat, 08 Jun 2013 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/mongodb/2013/06/08/mongodb%20CRUD.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/mongodb/2013/06/08/mongodb%20CRUD.html</guid>
+        
+        
+        <category>mongodb</category>
+        
+      </item>
+    
+      <item>
+        <title>Getting Start With Mongodb</title>
+        <description>&lt;h1 id=&quot;getting-start-with-mongodb&quot;&gt;Getting Start With Mongodb&lt;/h1&gt;
+
+&lt;h2 id=&quot;start&quot;&gt;start&lt;/h2&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;开启服务&lt;/h3&gt;
+
+&lt;p&gt;在根目录（磁盘所在目录）创建 data/db 文件夹&lt;/p&gt;
+
+&lt;p&gt;运行 mongod 文件，将会开启27017端口服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./mongod
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;http://localhost:28017/ 为db的信息、管理web页面&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;--dbpath 指定数据库位置
+--logfile 日志文件位置
+--auth 使用权限
+--repair 通过repaire选项恢复数据库
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;demo&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mongod --port 22222 --directoryperdb --dbpath /data/db
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;开启22222端口服务，并且设置每一个db单独一个文件夹，指定db所在的文件夹&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;终端访问&lt;/h3&gt;
+
+&lt;p&gt;运行 mongo 文件，可以打开一个控制台控制DB&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./mongo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;关闭服务&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;use admin
+db.shutdownServer()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;mongodb&quot;&gt;非正常关闭mongodb，导致无法启动&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;删除 /data/db/mongod.locks文件&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用repair 选项修复mongodb&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; ./mongod --repair
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;重启启动mongodb&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; ./mongod
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;管理&lt;/h2&gt;
+
+&lt;h3 id=&quot;export--import&quot;&gt;export &amp;amp; import&lt;/h3&gt;
+
+&lt;h4 id=&quot;export&quot;&gt;export&lt;/h4&gt;
+
+&lt;p&gt;demo&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mongoexport -d templates -c page -o templates.txt
+
+//远程导出
+mongoexport -d templates -c template -h 10.32.84.119:27017 -o  templates.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更多help&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mongoexport --help
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;import&quot;&gt;import&lt;/h4&gt;
+
+&lt;p&gt;demo&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mongoimport -d templates -c template --file template.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更多help&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mongoimport --help
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;remote-db&quot;&gt;remote db&lt;/h3&gt;
+
+&lt;p&gt;连接远程终端&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mongo -u admin -p admin 192.168.0.197:27017/templates
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更多help&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mongo -h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;概念&lt;/h2&gt;
+
+&lt;h3 id=&quot;id&quot;&gt;_id&lt;/h3&gt;
+
+&lt;p&gt;用于标示文档唯一性的_id,默认类型为ObjectId，但是可以为任意类型。&lt;/p&gt;
+
+&lt;h3 id=&quot;bson&quot;&gt;BSON&lt;/h3&gt;
+
+&lt;p&gt;mongodb的document的一种数据结构，二进制JSON，用来保存数据，mongodb对齐BSON数据进行了优化。&lt;/p&gt;
+</description>
+        <pubDate>Fri, 24 May 2013 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/mongodb/2013/05/24/geting%20start%20with%20mongo.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/mongodb/2013/05/24/geting%20start%20with%20mongo.html</guid>
+        
+        
+        <category>mongodb</category>
+        
+      </item>
+    
+      <item>
+        <title>http协议浅学</title>
+        <description>&lt;h1 id=&quot;http&quot;&gt;HTTP&lt;/h1&gt;
+
+&lt;h2 id=&quot;rest&quot;&gt;REST&lt;/h2&gt;
+
+&lt;p&gt;Representational State Transfer(表述性状态转移),语义化、规范化http method&lt;/p&gt;
+
+&lt;h3 id=&quot;http-method&quot;&gt;http method&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GET：请求获取指定资源。&lt;/li&gt;
+  &lt;li&gt;HEAD：请求指定资源的响应头。&lt;/li&gt;
+  &lt;li&gt;POST：向指定资源提交数据。&lt;/li&gt;
+  &lt;li&gt;PUT：请求服务器存储一个资源。&lt;/li&gt;
+  &lt;li&gt;DELETE：请求服务器删除指定资源。&lt;/li&gt;
+  &lt;li&gt;TRACE：回显服务器收到的请求，主要用于测试或诊断。&lt;/li&gt;
+  &lt;li&gt;CONNECT：HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。&lt;/li&gt;
+  &lt;li&gt;OPTIONS：返回服务器支持的HTTP请求方法。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;安全的和幂&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;安全的意味着该操作用于获取信息而非修改信息&lt;/li&gt;
+  &lt;li&gt;幂等（idempotent、idempotence）是一个数学或计算机学概念，常见于抽象代数中。幂等的意味着对同一URL的多个请求应该返回同样的结果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;get--post&quot;&gt;get 和 post&lt;/h4&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;数据大小限制&lt;/h5&gt;
+
+&lt;p&gt;URL不存在参数上限的问题，HTTP协议规范没有对URL长度进行限制。这个限制是特定的浏览器及服务器对它的限制。例如：IE对URL长度的限制是2083字节(2K+35)。而老式的代理可能执行最原始的URL长度限制，也就是255个字符。&lt;/p&gt;
+
+&lt;p&gt;.理论上讲，POST是没有大小限制的，HTTP协议规范也没有进行大小限制，起限制作用的是服务器的处理程序的处理能力。&lt;/p&gt;
+
+&lt;p&gt;IIS 6.0，微软出于安全考虑，加大了限制：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IIS 6.0默认ASP POST数据量最大为200KB，每个表单域限制是100KB。&lt;/li&gt;
+  &lt;li&gt;IIS 6.0默认上传文件的最大大小是4MB。&lt;/li&gt;
+  &lt;li&gt;IIS 6.0默认最大请求头是16KB。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-2&quot;&gt;数据位置&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;get:请求链接中传递数据&lt;/li&gt;
+  &lt;li&gt;post：请求报文的请求实体中保存数据&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;url&quot;&gt;URL编码&lt;/h4&gt;
+
+&lt;p&gt;RFC 1738没有规定具体的编码方法，而是交给应用程序（浏览器）自己决定。RFC 1738做了硬性规定：[0-9a-zA-Z]、一些特殊符号”$-_.+!*’(),”[不包括双引号]、以及某些保留字，才可以不经过编码直接用于URL。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;网址路径的编码，用的是utf-8编码。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  http://www.baidu.com/北京/index.php
+  http://www.baidu.com/%E5%8C%97%E4%BA%AC/index.php
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查询字符串的编码&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  http://www.baidu.com/s?wd=春节
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;ie 浏览器里的设置有一个选项为“发送utf-8编码url”，取消则为系统编码发送请求&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  Get /?s=\261\261\276\251
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;firefox，chrome为utf-8编码发送url &lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  GET /?s=%E7%99%BE%E5%BA%A6 
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;页面中的GET和POST方法编码，用的是网页的编码。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ajax调用中get、post，IE总是采用操作系统的默认编码，而Firefox总是采用utf-8编码。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  $.get(&quot;/i/list&quot;, {name : &quot;淘宝&quot;}, function (data) {});
+  $.post(&quot;/i/list&quot;, {name : &quot;淘宝&quot;}, function (data) {});
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;ie&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  Get /ilist?name=%cc%d4%b1%a6
+  Post name=%cc%d4%b1%a6
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;firefox，chrome&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  Get /i/list?name=%E6%B7%98%E5%AE%9D
+  Post name=%E6%B7%98%E5%AE%9D
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 23 May 2013 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/javascript/2013/05/23/http.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/javascript/2013/05/23/http.html</guid>
+        
+        
+        <category>javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>BFC学习</title>
+        <description>&lt;h1 id=&quot;bfc&quot;&gt;BFC&lt;/h1&gt;
+
+&lt;p&gt;BFC：Block Formatting Context&lt;/p&gt;
+
+&lt;p&gt;W3C CSS 2.1 规范中的一个概念，它决定了元素如何对其内容进行定位，以及与其他元素的关系和相互作用。可以理解为一种布局环境。&lt;/p&gt;
+
+&lt;p&gt;当一个元素处于BFC环境中，其子元素会一个接一个地放置。垂直方向上他们的起点是一个包含块的顶部，两个相邻的元素之间的垂直距离取决于 ‘margin’ 特性。在 Block Formatting Context 中相邻的块级元素的垂直边距会折叠（collapse）。&lt;/p&gt;
+
+&lt;h2 id=&quot;bfc-1&quot;&gt;如何开启BFC&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;float的值不为none。&lt;/li&gt;
+  &lt;li&gt;overflow的值不为visible。 —&amp;gt; 开启对子元素的有影响的BFC，而不对自身有作用&lt;/li&gt;
+  &lt;li&gt;display的值为table-cell, table-caption, inline-block中的任何一个。&lt;/li&gt;
+  &lt;li&gt;position的值不为relative和static。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;bfc-2&quot;&gt;BFC的意义&lt;/h2&gt;
+
+&lt;h3 id=&quot;margin&quot;&gt;解决垂直margin塌陷&lt;/h3&gt;
+
+&lt;p&gt;按照BFC的定义，只有同属于一个BFC时，两个元素才有可能发生垂直Margin的重叠，这个包括相邻元素，嵌套元素，只要他们之间没有阻挡(例如边框，非空内容，padding等)就会发生margin重叠。&lt;/p&gt;
+
+&lt;p&gt;因此要解决margin重叠问题，只要让它们不在同一个BFC就行了，但是对于两个相邻元素来说，意义不大，没有必要给它们加个外壳，但是对于嵌套元素来说就很有必要了，只要把父元素设为BFC就可以了。这样子元素的margin就不会和父元素的margin发生重叠了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;清除内部元素浮动的&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;不和浮动元素重叠&lt;/h3&gt;
+
+&lt;p&gt;如果一个浮动元素后面跟着一个非浮动的元素，那么就会产生一个覆盖的现象。&lt;/p&gt;
+
+&lt;h2 id=&quot;haslayout&quot;&gt;微软的hasLayout&lt;/h2&gt;
+
+&lt;p&gt;一个IE 渲染树上才有的属性，并且只存在于&lt;strong&gt;IE7&lt;/strong&gt;、 &lt;strong&gt;IE6&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;意义&lt;/h3&gt;
+
+&lt;p&gt;当一个对象的layout被激活时，它以及它的子渲染对象的定位和尺寸计算将独立进行，不受附近对象的干扰。&lt;strong&gt;也就是说它拥有一个独立的布局（layout）&lt;/strong&gt;。因此浏览器要花费更多的代价来处理拥有haslayout的对象。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;激活&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;position: absolute&lt;/p&gt;
+
+    &lt;p&gt;设置绝对定位可能会引发新的问题。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;float: left&lt;/td&gt;
+          &lt;td&gt;right&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;p&gt;IE下的浮动也会产生一些莫名其妙的问题。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;display: inline-block&lt;/p&gt;
+
+    &lt;p&gt;当一个内联元素需要haslayout属性时就需要用它，但是IE本身不支持inline-block的，只是表现得像标准里说的inline-block。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;width: 除’auto’外的任意值&lt;/p&gt;
+
+    &lt;p&gt;优先考虑使用该属性。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;height: 除’auto’外的任意值&lt;/p&gt;
+
+    &lt;p&gt;对 IE6 及更早版本来说很常用，该方法被称为霍莉破解(Holly hack)，即设定这个元素的高度为 1% (height:1%;)。但是要注意，当这个元素的 overflow 属性被设置为 visible 时，这个方法就失效了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;zoom: 除’normal’外的任意值&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;p&gt;又一个ie私有属性，不兼容标准。zoom:1可以在测试或者不追求标准的情况下使用，效果不错。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;writing-mode: tb-rl&lt;/p&gt;
+
+    &lt;p&gt;ie私有属性，不推荐用。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IE7 还有一些额外的属性：&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;min-height: (任意值)&lt;/li&gt;
+      &lt;li&gt;max-height: (除 none 外任意值)&lt;/li&gt;
+      &lt;li&gt;min-width: (任意值)&lt;/li&gt;
+      &lt;li&gt;max-width: (除 none 外任意值)&lt;/li&gt;
+      &lt;li&gt;overflow: (除 visible 外任意值)&lt;/li&gt;
+      &lt;li&gt;overflow-x: (除 visible 外任意值)&lt;/li&gt;
+      &lt;li&gt;overflow-y: (除 visible 外任意值)&lt;/li&gt;
+      &lt;li&gt;position: fixed&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;一句概括之：无论是w3c的bfc还是ie的hasLayout都是把元素以及其子元素的渲染独立出来计算，不再受其他元素影响。&lt;/p&gt;
+</description>
+        <pubDate>Thu, 25 Apr 2013 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/css/2013/04/25/BFC.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/css/2013/04/25/BFC.html</guid>
+        
+        
+        <category>css</category>
+        
+      </item>
+    
+      <item>
+        <title>cookie探索</title>
+        <description>&lt;h1 id=&quot;cookie&quot;&gt;Cookie&lt;/h1&gt;
+
+&lt;p&gt;最早由netscape发明，cookie由服务器生成，当浏览器接收response后把根据HTTP响应头把cookie放置在某个目录下，且下一次访问同一网站时发送给server。&lt;/p&gt;
+
+&lt;p&gt;server可以通过cookie技术在客户端存储少量信息。且可以根据cookie机制读取上次在客户端存储的cookie信息，以达到识别用户等功能。&lt;/p&gt;
+
+&lt;h2 id=&quot;cookie-&quot;&gt;cookie 属性&lt;/h2&gt;
+
+&lt;h3 id=&quot;key-value&quot;&gt;key value&lt;/h3&gt;
+
+&lt;p&gt;不能有 “:” “;” “ “&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;有效期&lt;/h3&gt;
+
+&lt;p&gt;默认的有效期是浏览器会话期间，存活在浏览器进程期。可以通过设置max-age属性设置存活期，这样cookie的信息就会持久化。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;作用域&lt;/h3&gt;
+
+&lt;p&gt;默认情况下创建的cookie的作用域属于该页面、该页面同目录的页面和该页面的目录的子目录页面。&lt;/p&gt;
+
+&lt;p&gt;想改变cookie的作用域，可以通过path属性设置cookie的作用域路径。&lt;/p&gt;
+
+&lt;h4 id=&quot;path&quot;&gt;path&lt;/h4&gt;
+
+&lt;p&gt;在http://jan423.github.com/blog/index.html设置一个cookie，默认情况下，该cookie的作用域属于/blog/目录下的请求和其子目录的请求。&lt;/p&gt;
+
+&lt;p&gt;当设置了path = /，那cookie的作用域属于这个域名下所有请求。&lt;/p&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;子域名&lt;/h4&gt;
+
+&lt;p&gt;设置domian为域名的子域名。这样cookie可以在具有同一个域名下的子域名共享，默认为设置改cookie的域名。&lt;/p&gt;
+
+&lt;h4 id=&quot;secure&quot;&gt;secure&lt;/h4&gt;
+
+&lt;p&gt;默认为空，表示改cookie会已不安全的http协议传输，若设置为secure则表示使用https安全传输。&lt;/p&gt;
+
+&lt;p&gt;在https协议下的页面里&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;document.cookie=&quot;name=value;max-age=33333333;secure&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;httponly&quot;&gt;HttpOnly&lt;/h4&gt;
+
+&lt;p&gt;为了防止js可以读取cookie触发安全问题，可以在响应头里添加HttpOnly属性，使得cookie不能在js里读取，只能通过http协议读取到&lt;/p&gt;
+
+&lt;h2 id=&quot;cookie-1&quot;&gt;操作cookie&lt;/h2&gt;
 
 </description>
-        <pubDate>Sun, 07 Dec 2014 21:34:16 +0800</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2014/12/07/welcome-to-young-cowboy.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2014/12/07/welcome-to-young-cowboy.html</guid>
+        <pubDate>Sat, 30 Mar 2013 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/http/2013/03/30/cookie%E5%AD%A6%E4%B9%A0.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/http/2013/03/30/cookie%E5%AD%A6%E4%B9%A0.html</guid>
         
         
-        <category>jekyll</category>
+        <category>http</category>
         
-        <category>update</category>
+      </item>
+    
+      <item>
+        <title>html5 file system</title>
+        <description>&lt;h1 id=&quot;file-system&quot;&gt;File System&lt;/h1&gt;
+
+&lt;p&gt;参考资料：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.html5rocks.com/zh/tutorials/file/filesystem/&quot;&gt;filesystem&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一直想好好的总结fs的一些信息，但是一直不得空。&lt;/p&gt;
+
+&lt;h2 id=&quot;blob&quot;&gt;Blob&lt;/h2&gt;
+
+&lt;p&gt;先了解下Blob吧，因为理解了Blob就很容易理解Javascript 的 Fs&lt;/p&gt;
+
+&lt;p&gt;Blob（binary large object）最早来源于SQL数据库，在SQL中表示二进制大对象，而在js里表示二进制数据。并且blob是不透明的，通常只能获取其大小，MIME类型，或者分割为更小数据。&lt;/p&gt;
+
+&lt;h3 id=&quot;blobfile&quot;&gt;由Blob继承而来的File对象&lt;/h3&gt;
+
+&lt;p&gt;FS的File对象继承于Blob，并且扩展了一些属性：name和lastModifiedDate&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;File.prototype.__proto__===Blob.prototype;//true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;createobjecturl&quot;&gt;createObjectURL&lt;/h3&gt;
+
+&lt;h3 id=&quot;blob-1&quot;&gt;读取Blob&lt;/h3&gt;
+
+&lt;p&gt;之前一直都是依赖浏览器显示blob内容，我们无法从语言角度去读取blob，由blob继承而来的file对象，为我们准备了一些方法可以操作blob。&lt;/p&gt;
+
+&lt;h2 id=&quot;fs&quot;&gt;FS&lt;/h2&gt;
+
+&lt;p&gt;待续…&lt;/p&gt;
+</description>
+        <pubDate>Fri, 29 Mar 2013 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/html5/2013/03/29/html5-filesystem.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/html5/2013/03/29/html5-filesystem.html</guid>
+        
+        
+        <category>html5</category>
+        
+      </item>
+    
+      <item>
+        <title>CSS 入门基础</title>
+        <description>&lt;h1 id=&quot;css&quot;&gt;CSS&lt;/h1&gt;
+
+&lt;p&gt;参考资料：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.w3.org/TR/CSS21/cascade.html&quot;&gt;cascade&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;概念&lt;/h2&gt;
+
+&lt;p&gt;层叠样式表&lt;/p&gt;
+
+&lt;p&gt;层叠：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;开发者设置的样式&lt;/li&gt;
+  &lt;li&gt;用户设置的样式&lt;/li&gt;
+  &lt;li&gt;浏览器默认样式&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;选择器&lt;/h2&gt;
+
+&lt;p&gt;为了选择出DOM树里的node，需要使用一些选择规则。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;选择器类型&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;* {height:100px;}; //通配符选择器
+div {height:100px;} //元素选择器
+
+.hd{height:100px;} //类选择器
+section.hd{height:100px;} //元素选择器+类选择器
+.important.warning {height:100px;} //ie7+ 选择同时包含这些类名的元素（类名的顺序不限）
+
+#hd{height:100px;} //ID选择器
+div#hd{height:100px;} //元素选择器+ID选择器
+
+a[href] {color:red;} //简单属性选择
+a[href][title] {color:red;} //同时有 href 和 title 属性的 HTML 超链接的文本设置为红色
+
+a[href=&quot;javascript:;&quot;] {color:red;} //选择具体属性值的node
+p[class~=&quot;important&quot;] {color: red;} //根据属性值中的词列表的某个词进行选择
+[abc^=&quot;def&quot;] //选择 abc 属性值以 &quot;def&quot; 开头的所有元素
+[abc$=&quot;def&quot;] //选择 abc 属性值以 &quot;def&quot; 结尾的所有元素
+[abc*=&quot;def&quot;] //选择 abc 属性值中包含子串 &quot;def&quot; 的所有元素
+img[src|=&quot;figure&quot;] //以指定值开头或相同选择
+
+h1 &amp;gt; strong {color:red;} //选择h1后第一个子元素
+h1 + p {margin-top:50px;} //选择h1后的第一个p元素 ie7+
+h1 ~ p {margin-top:50px;} //通用兄弟选择器 ,选择出h1后所有p元素 ie7+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;伪类选择出出现特殊效果/类型的元素&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//锚伪类,注意规范顺序 link &amp;gt; visited &amp;gt; hover &amp;gt; active
+a:link {color: #FF0000}		/* 未访问的链接 */
+a:visited {color: #00FF00}	/* 已访问的链接 */
+a:hover {color: #FF00FF}	/* 鼠标移动到链接上 */
+a:active {color: #0000FF}	/* 选定的链接 */
+
+//:focus focus时元素的特殊效果，ie下无效
+input:focus{background-color:yellow;}
+
+//:first-child 
+p:first-child {font-weight: bold;} //选择出第一个p
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;伪元素选择器针对本不是元素的元素选择 如文本信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p:first-line{color:#ff0000;} //选择出p的第一行文本，设置样式
+p:first-letter //p首字母
+p:before //p内容之前
+P:after //p内容之后
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;权限值&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;选择器的权值&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;内联样式 1000&lt;/li&gt;
+  &lt;li&gt;id选择器 100&lt;/li&gt;
+  &lt;li&gt;属性选择器和伪类 10&lt;/li&gt;
+  &lt;li&gt;元素选择器和伪元素 1&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;其他的选择器（如：*） 为 0&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;   *             {}  /* a=0 b=0 c=0 d=0 -&amp;gt; specificity = 0,0,0,0 */
+   li            {}  /* a=0 b=0 c=0 d=1 -&amp;gt; specificity = 0,0,0,1 */
+   li:first-line {}  /* a=0 b=0 c=0 d=2 -&amp;gt; specificity = 0,0,0,2 */
+   ul li         {}  /* a=0 b=0 c=0 d=2 -&amp;gt; specificity = 0,0,0,2 */
+   ul ol+li      {}  /* a=0 b=0 c=0 d=3 -&amp;gt; specificity = 0,0,0,3 */
+   h1 + *[rel=up]{}  /* a=0 b=0 c=1 d=1 -&amp;gt; specificity = 0,0,1,1 */
+   ul ol li.red  {}  /* a=0 b=0 c=1 d=3 -&amp;gt; specificity = 0,0,1,3 */
+   li.red.level  {}  /* a=0 b=0 c=2 d=1 -&amp;gt; specificity = 0,0,2,1 */
+   #x34y         {}  /* a=0 b=1 c=0 d=0 -&amp;gt; specificity = 0,1,0,0 */
+   style=&quot;&quot;          /* a=1 b=0 c=0 d=0 -&amp;gt; specificity = 1,0,0,0 */
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;层叠的权值&lt;/h3&gt;
+
+&lt;p&gt;用户设置 important &amp;gt; 开发者设置 important &amp;gt; 开发者设置 &amp;gt; 用户设置 &amp;gt; 浏览器默认&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;文件的权值&lt;/h3&gt;
+
+&lt;p&gt;行内样式权重&amp;gt;文件头部的style权重&amp;gt;外部样式文件权重&lt;/p&gt;
+
+&lt;p&gt;如果同为外部文件里的样式，选择器写法一样的情况下，后面的样式覆盖前面的&lt;/p&gt;
+</description>
+        <pubDate>Fri, 29 Mar 2013 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/css/2013/03/29/css%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/css/2013/03/29/css%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80.html</guid>
+        
+        
+        <category>css</category>
+        
+      </item>
+    
+      <item>
+        <title>HTML5 Drag &amp; Drop</title>
+        <description>&lt;h1 id=&quot;drag-and-drop&quot;&gt;Drag and Drop&lt;/h1&gt;
+
+&lt;p&gt;参考资料&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.html5rocks.com/en/tutorials/dnd/basics/&quot;&gt;http://www.html5rocks.com/en/tutorials/dnd/basics/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;浏览器支持情况&lt;/h2&gt;
+
+&lt;p&gt;chrome 7+,safari 5+,firefox 3.6+,ie6 +(ie6+ 不完全支持，无dataTransfet属性)&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;事件执行顺序&lt;/h2&gt;
+
+&lt;p&gt;dragstart –&amp;gt; drag –&amp;gt; dragenter –&amp;gt; dragover –&amp;gt; dragleave –&amp;gt; drop –&amp;gt; dragend&lt;/p&gt;
+
+&lt;h2 id=&quot;dom&quot;&gt;使DOM对象有拖拽效果&lt;/h2&gt;
+
+&lt;p&gt;添加draggable属性，draggable=”true”&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;li draggable=&quot;true&quot; class=&quot;&quot;&amp;gt;A&amp;lt;/li&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;拖拽事件对象&lt;/h2&gt;
+
+&lt;h3 id=&quot;edatatransfer&quot;&gt;e.dataTransfer&lt;/h3&gt;
+
+&lt;p&gt;退拽对象用来传递的媒介&lt;/p&gt;
+
+&lt;h3 id=&quot;eeffectallowed&quot;&gt;e.effectAllowed&lt;/h3&gt;
+
+&lt;p&gt;拖拽运行类型值：none，copy，copyLink， copyMove,link,linkMove,move，all，uninitialized&lt;/p&gt;
+
+&lt;h3 id=&quot;edatatransfersetdataformatdata&quot;&gt;e.datatransfer.setData(format,data)&lt;/h3&gt;
+
+&lt;p&gt;为元素添加指定数据&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;e.dataTransfer.setData(&#39;text/html&#39;, this.innerHTML);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;edatatransfercleardataformat&quot;&gt;e.datatransfer.clearData([format])&lt;/h3&gt;
+
+&lt;p&gt;删除指定格式的数据，如果未指定，则删除当前元素所有数据&lt;/p&gt;
+
+&lt;h4 id=&quot;format&quot;&gt;format&lt;/h4&gt;
+
+&lt;p&gt;设置保存值类型 text/plain, image/jpeg, text/html,text/uri-list&lt;/p&gt;
+
+&lt;h3 id=&quot;edatatransfertypes-dragstart&quot;&gt;e.datatransfer.types dragstart&lt;/h3&gt;
+
+&lt;p&gt;事件出发时为元素存储数据的格式,外部文件的拖曳，则返回 files&lt;/p&gt;
+
+&lt;h3 id=&quot;edatatransfergetdataformat&quot;&gt;e.datatransfer.getData(format)&lt;/h3&gt;
+
+&lt;p&gt;返回指定数据，如果数据不存在，则返回空字符串&lt;/p&gt;
+
+&lt;h3 id=&quot;edatatransferfiles&quot;&gt;e.datatransfer.files&lt;/h3&gt;
+
+&lt;p&gt;如果是拖曳文件，返回文件列表FileList&lt;/p&gt;
+
+&lt;h3 id=&quot;edatatransfersetdragimageelement-x-y&quot;&gt;e.datatransfer.setDragImage(element, x, y)&lt;/h3&gt;
+
+&lt;p&gt;制定拖曳元素时跟随鼠标移动的图片，想，y分别为相对鼠标的坐标&lt;/p&gt;
+
+&lt;h3 id=&quot;edatatransferaddelementelement&quot;&gt;e.datatransfer.addElement(element)&lt;/h3&gt;
+
+&lt;p&gt;添加一起跟随拖曳的元素&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;注意&lt;/h3&gt;
+
+&lt;p&gt;Event.preventDefault()&lt;/p&gt;
+
+&lt;p&gt;阻止默认的些事件方法等执行。在ondragover中一定要执行preventDefault()，否则ondrop事件不会被触发。
+另外，如果是从其他应用软件或是文件中拖东西进来，尤其是图片的时候，默认的动作是显示这个图片或是相关信息，并不是真的执行drop。
+此时需要用用document的ondragover事件把它直接干掉。&lt;/p&gt;
+
+&lt;h2 id=&quot;jquerydatatransfer&quot;&gt;让jquery支持dataTransfer&lt;/h2&gt;
+
+&lt;p&gt;jquery早期并不支持event的dataTransfer。所以要push到 jQuery.event.props.push(“dataTransfer”);&lt;/p&gt;
+
+&lt;h2 id=&quot;demo&quot;&gt;demo&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/demo/dnd-demo.html&quot;&gt;dnd-demo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;部分代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;ul class=&quot;demo-box demo-box3&quot; id=&quot;J_BoxCtn&quot;&amp;gt;
+    &amp;lt;li draggable=&quot;true&quot; class=&quot;&quot;&amp;gt;A&amp;lt;/li&amp;gt;
+    &amp;lt;li draggable=&quot;true&quot; class=&quot;&quot;&amp;gt;B&amp;lt;/li&amp;gt;
+    &amp;lt;li draggable=&quot;true&quot; class=&quot;&quot;&amp;gt;C&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+
+jQuery.event.props.push(&quot;dataTransfer&quot;);
+var dnd = {
+    &quot;dragstart&quot; : function (e) {
+        this.classList.add(&#39;draging&#39;);
+        e.dataTransfer.setData(&#39;text/html&#39;, this.innerHTML);
+        temp = e.target;
+    },
+    &quot;drag&quot;      : function (e) {
+    },
+    &quot;dragenter&quot; : function (e) {
+        this.classList.add(&#39;over&#39;);
+    },
+    &quot;dragover&quot;  : function (e) {
+        e.preventDefault();
+    },
+    &quot;dragleave&quot; : function (e) {
+        this.classList.remove(&#39;over&#39;);
+    },
+    &quot;drop&quot;      : function (e) {
+        e.stopPropagation();
+        this.classList.remove(&#39;over&#39;);
+        temp.innerHTML = e.target.innerHTML;
+        this.innerHTML = e.dataTransfer.getData(&#39;text/html&#39;);
+    },
+    &quot;dragend&quot;   : function (e) {
+        this.classList.remove(&#39;draging&#39;);
+        this.classList.remove(&#39;over&#39;);
+    }
+};
+
+var temp = null;
+
+for (var i in dnd) {
+    $(&quot;#J_BoxCtn&quot;).on(i, &quot;li&quot;, dnd[i]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Fri, 22 Mar 2013 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/html5/2013/03/22/drag-and-drop.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/html5/2013/03/22/drag-and-drop.html</guid>
+        
+        
+        <category>html5</category>
+        
+      </item>
+    
+      <item>
+        <title>nodejs 入门</title>
+        <description>&lt;h1 id=&quot;nodejs&quot;&gt;nodejs&lt;/h1&gt;
+
+&lt;p&gt;一个单线程、非阻塞的事件编程模式；&lt;/p&gt;
+
+&lt;p&gt;参考资料&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.infoq.com/cn/articles/what-is-nodejs?utm_source=infoq&amp;amp;utm_medium=related_content_link&amp;amp;utm_campaign=relatedContent_articles_clk&quot;&gt;《深入浅出Node.js》&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;《深入理解计算机系统》&lt;/li&gt;
+  &lt;li&gt;《Node.js开发指南》&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.infoq.com/cn/articles/msh-using-npm-manage-node.js-dependence&quot;&gt;《如何使用NPM来管理你的Node.js依赖》&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;一些概念&lt;/h2&gt;
+
+&lt;h3 id=&quot;io&quot;&gt;计算机体系结构（i/o）&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;I/O操作&lt;/strong&gt;：cpu线程在执行中如果遇到磁盘读写或网络通信&lt;/p&gt;
+
+&lt;h4 id=&quot;io-1&quot;&gt;同步 i/o&lt;/h4&gt;
+
+&lt;p&gt;通常I/O要耗费较长的时间，这时操作系统会剥夺这个线程的 CPU 控制权，使其暂停执行，同时将资源让给其他的工作线程阻塞后，当 I/O 操作完毕时，操作系统将这个线程的阻塞状态解除，恢复其对CPU的控制权，令其继续执行。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/synchronous.jpg&quot; alt=&quot;synchronous&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;io-2&quot;&gt;异步 i/o&lt;/h4&gt;
+
+&lt;p&gt;当线程遇到 I/O 操作时，不会以阻塞的方式等待 I/O 操作的完成或数据的返回，而只是将 I/O 请求发送给操作系统，继续执行下一条语句。当操作
+系统完成 I/O 操作时，以&lt;strong&gt;事件&lt;/strong&gt;的形式通知执行 I/O 操作的线程，线程会在特定时候处理这个事件。为了处理异步 I/O，线程必须有&lt;strong&gt;事件循环&lt;/strong&gt;，不断地检查有没有未处理的事件，依次予以处理。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/asynchronous.jpg&quot; alt=&quot;asynchronous&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;优点和缺点&lt;/h4&gt;
+
+&lt;p&gt;同步式 I/O（阻塞式）&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;利用多线程提供吞吐量				 	&lt;/li&gt;
+  &lt;li&gt;通过事件片分割和线程调度利用多核CPU	 	&lt;/li&gt;
+  &lt;li&gt;需要由操作系统调度多线程使用多核 CPU 	&lt;/li&gt;
+  &lt;li&gt;难以充分利用 CPU 资源 			 	&lt;/li&gt;
+  &lt;li&gt;内存轨迹大，数据局部性弱            	&lt;/li&gt;
+  &lt;li&gt;符合线性的编程思维					 	&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;异步式 I/O（非阻塞式）&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;单线程即可实现高吞吐量&lt;/li&gt;
+  &lt;li&gt;通过功能划分利用多核CPU&lt;/li&gt;
+  &lt;li&gt;可以将单进程绑定到单核 CPU&lt;/li&gt;
+  &lt;li&gt;可以充分利用 CPU 资源&lt;/li&gt;
+  &lt;li&gt;内存轨迹小，数据局部性强&lt;/li&gt;
+  &lt;li&gt;不符合传统编程思维&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;nodejs-&quot;&gt;nodejs 基本概念&lt;/h2&gt;
+
+&lt;h3 id=&quot;nodejs-1&quot;&gt;nodejs&lt;/h3&gt;
+
+&lt;p&gt;Node.js采用C++语言编写而成，是一个Javascript的&lt;strong&gt;运行环境&lt;/strong&gt;。Node.js的设计思想中以&lt;strong&gt;事件驱动&lt;/strong&gt;为核心，它提供的绝大多数API都是基于事件的、异步的风格。此类设计非常适合于后端的网络服务编程，Node.js的目标也在于此，重要的优势在于，充分利用了系统资源，执行代码无须阻塞等待某种操作完成&lt;/p&gt;
+
+&lt;p&gt;javascript = ec + BOM + DOM&lt;/p&gt;
+
+&lt;p&gt;nodejs = ec + 本地接口&lt;/p&gt;
+
+&lt;h3 id=&quot;module&quot;&gt;module&lt;/h3&gt;
+
+&lt;p&gt;模块就是一个文件，如何创建、引用、使用一个模块。&lt;/p&gt;
+
+&lt;p&gt;exports为模块的对外接口，本质为空对象{};，require为获取模块方法。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//age.js
+var personAge = 20;
+exports.getAge = function () {
+    return personAge;
+};
+
+exports.setAge = function (age) {
+    personAge = age;
+};
+
+//readAge.js
+var age = require(&#39;./age&#39;);
+console.info(age.getAge());//20
+
+age.setAge(&quot;23&quot;);
+console.info(age.getAge());//23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;exports 本质为空对象，我们可以覆盖这个引用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//age.js
+module.exports = {
+   	 personAge : 20,
+    getAge    : function () {
+        return this.personAge;
+    },
+    setAge    : function (age) {
+        this.personAge = age;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;不可以通过对 exports 直接赋值代替对 module.exports 赋值。exports 实际上只是一个和 module.exports 指向同一个对象的变量，它本身会在模块执行结束后释放，但 module 不会，因此只能通过指定module.exports 来改变访问接口。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module.exports===exports;//true
+exports---&amp;gt;{}&amp;lt;---module.exports
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;模块加载机制&lt;/h4&gt;
+
+&lt;p&gt;require方法接受以下几种参数的传递：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;http、fs、path等，原生模块。&lt;/li&gt;
+  &lt;li&gt;./mod或../mod，相对路径的文件模块。&lt;/li&gt;
+  &lt;li&gt;/pathtomodule/mod，绝对路径的文件模块。&lt;/li&gt;
+  &lt;li&gt;mod，非原生模块的文件模块。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;模块可以是js–&amp;gt;json–&amp;gt;node文件,&lt;/p&gt;
+
+&lt;p&gt;下面总结一下使用 require(some_module) 时的加载顺序。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果some_module以“ / ”、“ ./ ”或“ ../ ”开头，按路径加载 some_module，结束。&lt;/li&gt;
+  &lt;li&gt;如果some_module 是一个核心模块（fs、http、net、vm），直接加载，结束。&lt;/li&gt;
+  &lt;li&gt;假设当前目录为 current_dir，按路径加载 current_dir/node_modules/some_module。
+    &lt;ul&gt;
+      &lt;li&gt;如果加载成功，结束。&lt;/li&gt;
+      &lt;li&gt;如果加载失败，令current_dir为其父目录。&lt;/li&gt;
+      &lt;li&gt;重复这一过程，直到遇到根目录，抛出异常，结束。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/require-step.jpg&quot; alt=&quot;require step&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;so 模块只会实例化一次&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var age1 = require(&#39;./age&#39;);
+var age2 = require(&#39;./age&#39;);
+
+age1.setAge(&quot;23&quot;);
+console.info(age2.getAge());//23
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;package&quot;&gt;package&lt;/h3&gt;
+
+&lt;p&gt;抽象概念为类库，将一系列功能打包起来，发布、更新等。&lt;/p&gt;
+
+&lt;p&gt;一个符合CommonJS规范的包应该是如下这种结构：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;一个package.json文件应该存在于包顶级目录下&lt;/li&gt;
+  &lt;li&gt;二进制文件应该包含在bin目录下。&lt;/li&gt;
+  &lt;li&gt;JavaScript代码应该包含在lib目录下。&lt;/li&gt;
+  &lt;li&gt;文档应该在doc目录下。&lt;/li&gt;
+  &lt;li&gt;单元测试应该在test目录下。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Node.js在没有找到目标文件时，会将当前目录当作一个包来尝试加载&lt;/strong&gt;，所以在package.json文件中最重要的一个字段就是main。如果 package.json 或 main 字段不存在，会尝试寻找 index.js 或 index.node 作为包的接口。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;name。包名，需要在NPM上是唯一的。不能带有空格。&lt;/li&gt;
+  &lt;li&gt;description。包简介。通常会显示在一些列表中。&lt;/li&gt;
+  &lt;li&gt;version。版本号。一个语义化的版本号（http://semver.org/ ），通常为x.y.z。该版本号十分重要，常常用于一些版本控制的场合。
+    &lt;ul&gt;
+      &lt;li&gt;说明 （例如 1.2.3）
+        &lt;ul&gt;
+          &lt;li&gt;主版本 1&lt;/li&gt;
+          &lt;li&gt;副版本 2&lt;/li&gt;
+          &lt;li&gt;补丁版本 3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;keywords。关键字数组。用于NPM中的分类搜索。&lt;/li&gt;
+  &lt;li&gt;maintainers。包维护者的数组。数组元素是一个包含name、email、web三个属性的JSON对象。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;contributors。包贡献者的数组。第一个就是包的作者本人。在开源社区，如果提交的patch被merge进master分支的话，就应当加上这个贡献patch的人。格式包含name和email。如：&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  &quot;contributors&quot;: [{
+      &quot;name&quot;: &quot;Jackson Tian&quot;,
+      &quot;email&quot;: &quot;mail @gmail.com&quot;
+      }, {
+      &quot;name&quot;: &quot;fengmk2&quot;,
+      &quot;email&quot;: &quot;mail2@gmail.com&quot;
+  }]
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;bugs。一个可以提交bug的URL地址。可以是邮件地址（mailto:mailxx@domain），也可以是网页地址（http://url）。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;licenses。包所使用的许可证。例如：&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  &quot;licenses&quot;: [{
+      &quot;type&quot;: &quot;GPLv2&quot;,
+      &quot;url&quot;: &quot;http://www.example.com/licenses/gpl.html&quot;,
+  }]
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;repositories。托管源代码的地址数组。&lt;/li&gt;
+  &lt;li&gt;dependencies。当前包需要的依赖。这个属性十分重要，NPM会通过这个属性，帮你自动加载依赖的包。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;npm&quot;&gt;npm&lt;/h3&gt;
+
+&lt;p&gt;Node Package Manager&lt;/p&gt;
+
+&lt;h4 id=&quot;npm-install&quot;&gt;npm install命令&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;npm [install/i] -g [package_name]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;全局路径，也就是带上参数 -g 的安装模式。这个命令会把模块安装在 $PREFIX/lib/node_modules 下，可通过命令 npm root -g 查看全局模块的安装目录。 package.json 里定义的bin会安装到 $PREFIX/bin 目录下，如果模块带有 man page 会安装到 $PREFIX/share/man 目录下。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  $ npm root -g
+  C:\Users\xxxx\AppData\Roaming\npm\node_modules
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;本地路径，不带 -g 参数的。从当前目录一直查找到根目录/下有没有 node_modules 目录，有模块安装到这个目录下的 node_modules 目录里，如果没有找到则把模块安装到当前目录 node_modules 目录下。package.josn 定义的 bin 会安装到 node_modules/.bin 目录下，man page 则不会安装。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;npm-link&quot;&gt;npm link命令&lt;/h4&gt;
+
+&lt;p&gt;使用全局模式安装的包不能直接通过 require 使用，但通过 npm link命令可以打破这一限制。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Administrator@jan ~/mygit/study_nodejs/node_modules/speak
+
+$ npm link
+
+npm WARN package.json speak@0.0.1 No README.md file found!
+C:\Documents and Settings\Administrator\Application Data\npm\node_modules\speak -&amp;gt; F:\workspace\mygit\study_nodejs\node_modules\speak
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样本地包就映射到全局包里去了。方便本地目录开发。如果这个时候有别的包依赖speak包。则可以在别的包的目录下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm link speak
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;即可调用speak包。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/npm-link.jpg&quot; alt=&quot;npm-link&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;nodejs-2&quot;&gt;基于事件的nodejs&lt;/h2&gt;
+
+&lt;p&gt;事件是单线程、异步编程nodejs的核心。&lt;/p&gt;
+
+&lt;p&gt;模块：EventEmitter&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var events = require(&#39;events&#39;);
+var emitter = new events.EventEmitter();
+emitter.on(&#39;someEvent&#39;, function(arg1, arg2) {
+	console.log(&#39;listener1&#39;, arg1, arg2);//listener1 byvoid 1991
+});
+emitter.on(&#39;someEvent&#39;, function(arg1, arg2) {
+	console.log(&#39;listener2&#39;, arg1, arg2);//listener2 byvoid 1991
+});
+emitter.emit(&#39;someEvent&#39;, &#39;byvoid&#39;, 1991);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通常我们会继承EventEmitter用在自己的模块里。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var events = require(&#39;events&#39;);
+var task = Object.create(events.EventEmitter.prototype);
+
+task.on(&#39;say&#39;, function () {
+    console.info(this.name);
+});
+task.emit(&#39;say&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;debug&quot;&gt;debug&lt;/h2&gt;
+
+&lt;p&gt;使用webstorm调试，方便、快捷。&lt;/p&gt;
+</description>
+        <pubDate>Wed, 20 Mar 2013 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/node/2013/03/20/node%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/node/2013/03/20/node%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0.html</guid>
+        
+        
+        <category>node</category>
         
       </item>
     

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/mongodb/2013/05/24/geting%20start%20with%20mongo.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Getting Start With Mongodb</h1>
+    <p class="post-meta">May 24, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="getting-start-with-mongodb">Getting Start With Mongodb</h1>
+
+<h2 id="start">start</h2>
+
+<h3 id="section">开启服务</h3>
+
+<p>在根目录（磁盘所在目录）创建 data/db 文件夹</p>
+
+<p>运行 mongod 文件，将会开启27017端口服务</p>
+
+<pre><code>./mongod
+</code></pre>
+
+<p>http://localhost:28017/ 为db的信息、管理web页面</p>
+
+<pre><code>--dbpath 指定数据库位置
+--logfile 日志文件位置
+--auth 使用权限
+--repair 通过repaire选项恢复数据库
+</code></pre>
+
+<p>demo</p>
+
+<pre><code>mongod --port 22222 --directoryperdb --dbpath /data/db
+</code></pre>
+
+<p>开启22222端口服务，并且设置每一个db单独一个文件夹，指定db所在的文件夹</p>
+
+<h3 id="section-1">终端访问</h3>
+
+<p>运行 mongo 文件，可以打开一个控制台控制DB</p>
+
+<pre><code>./mongo
+</code></pre>
+
+<h3 id="section-2">关闭服务</h3>
+
+<pre><code>use admin
+db.shutdownServer()
+</code></pre>
+
+<h4 id="mongodb">非正常关闭mongodb，导致无法启动</h4>
+
+<ol>
+  <li>删除 /data/db/mongod.locks文件</li>
+  <li>
+    <p>使用repair 选项修复mongodb</p>
+
+    <pre><code> ./mongod --repair
+</code></pre>
+  </li>
+  <li>
+    <p>重启启动mongodb</p>
+
+    <pre><code> ./mongod
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="section-3">管理</h2>
+
+<h3 id="export--import">export &amp; import</h3>
+
+<h4 id="export">export</h4>
+
+<p>demo</p>
+
+<pre><code>mongoexport -d templates -c page -o templates.txt
+
+//远程导出
+mongoexport -d templates -c template -h 10.32.84.119:27017 -o  templates.txt
+</code></pre>
+
+<p>更多help</p>
+
+<pre><code>mongoexport --help
+</code></pre>
+
+<h4 id="import">import</h4>
+
+<p>demo</p>
+
+<pre><code>mongoimport -d templates -c template --file template.txt
+</code></pre>
+
+<p>更多help</p>
+
+<pre><code>mongoimport --help
+</code></pre>
+
+<h3 id="remote-db">remote db</h3>
+
+<p>连接远程终端</p>
+
+<pre><code>mongo -u admin -p admin 192.168.0.197:27017/templates
+</code></pre>
+
+<p>更多help</p>
+
+<pre><code>mongo -h
+</code></pre>
+
+<h2 id="section-4">概念</h2>
+
+<h3 id="id">_id</h3>
+
+<p>用于标示文档唯一性的_id,默认类型为ObjectId，但是可以为任意类型。</p>
+
+<h3 id="bson">BSON</h3>
+
+<p>mongodb的document的一种数据结构，二进制JSON，用来保存数据，mongodb对齐BSON数据进行了优化。</p>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

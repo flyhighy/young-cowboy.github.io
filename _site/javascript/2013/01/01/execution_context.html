@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/javascript/2013/01/01/execution_context.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">javascript 执行环境探索</h1>
+    <p class="post-meta">Jan 1, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="execution-contextec-in-ecmascript">Execution Context(EC) in ECMAScript</h1>
+
+<p>参考资料</p>
+
+<ul>
+  <li><a href="http://wenku.baidu.com/view/358a14593b3567ec102d8ac3.html">执行环境,作用域理解</a></li>
+  <li><a href="http://www.cnblogs.com/TomXu/archive/2011/12/29/2290308.html">深入理解JavaScript系列（2）：揭秘命名函数表达式</a></li>
+  <li><a href="http://www.cnblogs.com/TomXu/archive/2012/01/16/2309728.html">深入理解JavaScript系列（12）：变量对象（Variable Object）</a></li>
+  <li><a href="http://www.cnblogs.com/TomXu/archive/2012/01/18/2312463.html">深入理解JavaScript系列（14）：作用域链(Scope Chain)</a></li>
+  <li><a href="http://www.cnblogs.com/TomXu/archive/2012/01/17/2310479.html">深入理解JavaScript系列（13）：This? Yes,this!</a></li>
+</ul>
+
+<p>代码的执行所处的环境，也叫执行上下文,它确定了代码的作用域，作用域链，this属性，代码的生存期等等，让我们从<strong>解释器的角度</strong>看代码是如何执行的。
+EC可以用如下的数据结构表达，它有很多属性，VO,[[scope]],this等等。</p>
+
+<pre><code>EC={
+	Variable Object:....,
+	[[scope]]:...,
+	this:...
+}
+</code></pre>
+
+<h2 id="ec">1 三种EC（代码执行环境）</h2>
+
+<ul>
+  <li>global</li>
+  <li>function</li>
+  <li>eval</li>
+</ul>
+
+<h2 id="section">2 代码执行的过程</h2>
+
+<p>一段JS代码进入解释器到执行分为2步骤，这2步各自有各自的事要处理</p>
+
+<ul>
+  <li>进入执行环境</li>
+  <li>执行代码</li>
+</ul>
+
+<h2 id="variable-objectvo">3 Variable Object（VO）</h2>
+
+<p>我们声明的变量，<strong>声明的函数</strong>，传入的参数都放到哪里去了？引擎是在哪里寻找它们的？其实它们都放入到一个叫VO的对象里去了，可以说了解VO是很重要的。VO的数据结构可以如下表达</p>
+
+<pre><code>VO={
+	声明的变量,
+	声明的函数，
+	参数(函数内部VO拥有)
+}
+</code></pre>
+
+<h3 id="section-1">3.1 函数的声明与表达式</h3>
+
+<ul>
+  <li>函数声明式:function 函数名称 (参数：可选){ 函数体 }</li>
+  <li>函数表达式：function 函数名称（可选）(参数：可选){ 函数体 }</li>
+</ul>
+
+<p>ECMAScript是通过上下文来区分的，如果function foo(){}是作为赋值表达式的一部分的话，那它就是一个函数表达式，反之为函数声明式。</p>
+
+<pre><code>function foo(){} // 声明
+var bar = function foo(){}; // 表达式，因为它是赋值表达式的一部分
+
+new function bar(){}; // 表达式，因为它是new表达式
+
+(function(){
+	function bar(){} // 声明
+})();
+
+(function foo(){}); // 函数表达式：包含在分组操作符()内，而分组符里的表达式
+</code></pre>
+
+<p>注意：根据表达式的生成函数的函数名称是不会放入函数所处的EC的VO中的。</p>
+
+<h4 id="demo">3.1.1 DEMO</h4>
+
+<pre><code>function f() {
+    var bar = function foo() {};//这是表达式声明函数
+
+	typeof bar;//function;
+    typeof foo;//undefined;
+}
+
+f.VO.foo=undefined;//无论是在代码进入环境还是代码执行的时候
+</code></pre>
+
+<p>但是这个foo只在foo函数EC中有效，因为规范规定了标示符foo不能在外围的EC有效，而且是在foo的VO中存在，有些浏览器（chrome）是无法用debug访问到的，但是firefox是可以访问到的，但是IE6~IE8是在foo的外围可以访问到foo的，IE9已经修复了这个问题，可以用IE8执行如下代码。</p>
+
+<pre><code>alert(typeof foo);//undefined
+var bar = function foo() {
+    alert(typeof foo);//function
+    function k() {
+    }
+
+    return function () {
+        alert(typeof foo);//function
+        alert(typeof k);//function
+    }
+}
+
+bar()();
+</code></pre>
+
+<p>EC确定了VO的不同，所以按EC给VO分类。</p>
+
+<h3 id="vo">3.2 全局环境的VO</h3>
+
+<p>所有在global声明的函数，变量都会在global的VO中存在。</p>
+
+<pre><code>global.vo = {
+  Math: &lt;...&gt;,
+  String: &lt;...&gt;
+  ...
+  ...
+  window: global //引用自身
+};
+</code></pre>
+
+<h3 id="vo-1">3.3 函数的VO</h3>
+
+<p>当进入执行上下文VO会有如下属性：</p>
+
+<ul>
+  <li>
+    <p>函数的所有形参(如果我们是在函数执行上下文中)</p>
+
+    <p>由名称和对应值组成的一个变量对象的属性被创建；没有传递对应参数的话，那么由名称和undefined值组成的一种变量对象的属性也将被创建。</p>
+
+    <pre><code>  function f(a, b, a) {
+      debugger;
+  }
+  f(1, 2, 3);
+</code></pre>
+
+    <p><strong>执行的时候</strong>f的VO</p>
+
+    <pre><code>  f.VO={
+      a:3,
+      b:2
+  }	
+</code></pre>
+
+    <p>因为形参名字重复，而VO的key是不可以重复的（VO是一个对象），所以在代码执行给VO赋值时根据先后顺序最后一个实参会覆盖第一个实参的值。</p>
+  </li>
+  <li>
+    <p>所有函数声明(FunctionDeclaration, FD)</p>
+
+    <p>由名称和对应值（函数对象(function-object)）组成一个变量对象的属性被创建；如果变量对象已经存在相同名称的属性，则完全替换这个属性。</p>
+  </li>
+  <li>
+    <p>所有变量声明(var, VariableDeclaration)</p>
+
+    <p>由名称和对应值（undefined）组成一个变量对象的属性被创建；如果变量名称跟已经声明的形式参数或函数相同，则变量声明不会干扰已经存在的这类属性。</p>
+  </li>
+</ul>
+
+<p><strong>可以看到声明的函数优先级大于变量的声明</strong>。</p>
+
+<pre><code>alert(x); // function
+var x = 10;
+alert(x); // 10
+x = 20;
+function x() {};
+alert(x); // 20
+</code></pre>
+
+<h4 id="demo-1">3.3.1 DEMO</h4>
+
+<p>test1</p>
+
+<pre><code>function f(a, b, c) {
+	var a = a, g = 1;
+    function g() {
+        //function body
+    }
+    var k = 1;
+}
+
+f(1, 2, 3);
+</code></pre>
+
+<p>引擎进入执行环境时，把EC中的变量，形参，声明的函数放入VO，成为VO的属性</p>
+
+<pre><code>f.VO={
+    a:undefined,//这个是形参的a，优先级高于声明的变量a
+    b:undefined,//这个是形参的b
+    c:undefined,//这个是形参的c
+    g:function,//函数的优先级最高，覆盖了变量g
+    k:undefined//声明的k
+};
+</code></pre>
+
+<p>代码执行时给VO属性赋值，按代码执行过程</p>
+
+<pre><code>f.VO={
+    a:1,
+    b:2,
+    c:3,
+    g:function,
+    k:1
+};
+</code></pre>
+
+<p>test2</p>
+
+<pre><code>function f(a) {
+    a = a;
+    b = a;
+}
+f(1);
+alert(a);//undefined
+alert(b);//1
+</code></pre>
+
+<p>test2很奇怪是吧，我们认为会alert(a)提示“1”，但是结果是undefined。在我们的脑海里总是有这个概念：没有声明的变量会变成全局变量，其实根本没这回事。事实是：给没有声明的变量赋值造成的现象是变量变为了global的属性（也就是window属性），而不是一个全局变量。让我们来看下代码的流程。</p>
+
+<p>进入环境，把形参标示放入VO中，并赋值为undefined</p>
+
+<pre><code>f.VO={
+    a:undefined
+}
+</code></pre>
+
+<p><strong>这里没有把b算入f的VO，因为b不是声明出来的</strong></p>
+
+<p>执行时</p>
+
+<p>形参a根据实参1，被赋予1，代码第一行a=a,右边的a为1，解释给左边的a赋值，解释器从VO开始寻找a，发现VO中有a，就给其赋予形参a的值——1。解释器寻找b,从[[scope]]寻找一直到global的VO都没找到b，于是就给global添加一个属性——b，赋值于1。期间没有<strong>产生新的变量</strong>。</p>
+
+<p>test3</p>
+
+<pre><code>function f() {
+    var a = 1;
+
+    return {
+        set:function (b) {
+            a = b;
+        },
+        get:function () {
+            return a;
+        }
+    }
+}
+
+var o=f();
+o.set(2);
+o.get();//2
+</code></pre>
+
+<p>总结：</p>
+
+<ul>
+  <li>所以我们没必要在函数体内又声明一个和形参相同的变量,直接访问形参变量便是。</li>
+  <li>我们声明的变量可以放到一起声明，原因已经在前面阐述了，而代码执行过程只是根据你的赋值表达式往VO中属性赋值。</li>
+</ul>
+
+<h2 id="scope">4 [[scope]]</h2>
+
+<p>[[scope]]是函数的内部属性，它指向一个数组对象（俗称作用域链对象），这个数组对象会包含父亲函数的VO一直到global的VO。</p>
+
+<pre><code>[[scope]]--&gt;VO+[[scope]]
+</code></pre>
+
+<p>这个对象在2种环境（进入执行环境，执行代码）有着不同状态。</p>
+
+<p>eg</p>
+
+<pre><code>function f() {
+    var a = 1;
+}
+</code></pre>
+
+<p>针对这个函数来说。</p>
+
+<ul>
+  <li>
+    <p>进入执行环境(执行代码前)，函数的EC中的VO和[[scope]]</p>
+
+    <pre><code>  f.VO={
+      a:undefined
+  }
+  f.scope=[global.VO];//全局vo在进入f的执行环境前已经创建了。
+</code></pre>
+  </li>
+  <li>
+    <p>执行时，把f的VO推入[[scope]]指向的数据对象第一位。</p>
+
+    <pre><code>  f.VO={
+  	a:1
+  }
+  f.scope=[f.VO，global.VO];
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="catchwithscope">4.1 catch,with可以改变[[scope]]指向的数组对象结构</h3>
+
+<p>catch，with关键词会在<strong>执行</strong>时把<strong>参数</strong>推入[[scope]]指向的数组对象第一位</p>
+
+<pre><code>witch({a:1}){
+	alert(a);//1
+	var a=2;
+	alert(a);//2
+}
+</code></pre>
+
+<ul>
+  <li>
+    <p>进入环境</p>
+
+    <pre><code>  vo={
+      a:undefined
+  }
+</code></pre>
+  </li>
+  <li>
+    <p>执行</p>
+
+    <pre><code>  scope=[{a:1},vo,global.vo]---&gt;alert(a)//1
+  var a=2;//执行到这里时a的值发生了改变并且影响到scope
+  scope=[{a:2},vo,global.vo]---&gt;alert(a)//2,
+</code></pre>
+  </li>
+</ul>
+
+<p>从本质上了解了作用域链，就很容易理解闭包了。</p>
+
+<h3 id="section-2">4.2 闭包</h3>
+
+<blockquote>
+  <p>当函数内部定义了其他函数，就创建了闭包，闭包(子函数)有权访问父级函数的<strong>VO</strong>所有变量。</p>
+</blockquote>
+
+<p>如果子函数[[scope]]<strong>持续</strong>引用了父函数的VO，就会使父函数的VO无法销毁掉。所以我们要妥善处理闭包的特性。</p>
+
+<pre><code>function f() {
+    var val = 1;
+    return function () {
+        return val;
+    }
+}
+
+var temp=f();
+</code></pre>
+
+<p>返回的函数[[scope]]持有f函数的VO，已至于f执行后无法释放VO等所占用的内存。</p>
+
+<pre><code>var temp=null;//让GC去处理f的内存吧。
+</code></pre>
+
+<h2 id="this">5 this</h2>
+
+<p>this是在代码进入执行环境时确认的，所以按代码进入执行环境时所在说明this更为清晰。</p>
+
+<h3 id="global">5.1 顶级执行环境global。</h3>
+
+<p>代码在global中执行，this永远都是global。</p>
+
+<h3 id="section-3">5.2 代码在函数执行环境</h3>
+
+<p>函数的EC中的this是由函数调用的方式来确定的。</p>
+
+<h4 id="applycall">5.2.1 使用apply，call方法调用函数</h4>
+
+<p>this指向这些函数的第一个参数</p>
+
+<pre><code>var sth = "global";
+function f() {
+    alert(this.sth);
+}
+f();//global
+var o = {sth:"o"};
+f.apply(o);//o
+f.call(o);//o
+</code></pre>
+
+<h4 id="new">5.2.2 使用new调用函数</h4>
+
+<p>这是的函数叫构造函数</p>
+
+<ul>
+  <li>先生成一个对象</li>
+  <li>this指向这个新对象~</li>
+</ul>
+
+<h4 id="section-4">5.2.3 单独使用()调用函数</h4>
+
+<p>执行时this的值取决于()左边的值所属的对象</p>
+
+<h5 id="section-5">5.2.3.1 当生成的函数对象有被引用</h5>
+
+<p>如果函数被引用，那么this指向这个引用函数的东东的所属环境，但是函数被函数的VO引用那么this指向null，再而转为global。</p>
+
+<p>test1</p>
+
+<pre><code>var sth = "global";
+function f() {
+    alert(this.sth);
+}
+f();//global
+var o = {sth:"o"};
+o.f = f;
+o.f();//o
+</code></pre>
+
+<p>test2</p>
+
+<pre><code>var a = 'global';
+function f() {
+    alert(this);
+}
+f();//global
+f.prototype.constructor();//f.prototype
+</code></pre>
+
+<p>test3</p>
+
+<p>这种情况下，f被k的vo引用，f的执行环境的this指向null，转为global。</p>
+
+<pre><code>function k() {
+    function f() {
+        alert(this);
+    }
+    f();//window
+}
+
+k.vo.f=function;
+f.this=null==&gt;global;
+</code></pre>
+
+<p>test4</p>
+
+<pre><code>var foo = {
+  bar: function () {
+    alert(this);
+  }
+};
+ 
+foo.bar(); // Reference, OK =&gt; foo ()左边的引用类型属于foo，this指向foo
+(foo.bar)(); // Reference, OK =&gt; foo “()”对foo.bar没有任何处理，返回仍是foo.bar。
+ 
+(foo.bar = foo.bar)(); // global 赋值操作符使返回值是foo.bar所指向的函数。返回的是一个没有东西引用的function
+(false || foo.bar)(); // global ||同上
+(foo.bar, foo.bar)(); // global 连续运算符仍是同上
+</code></pre>
+
+<h5 id="section-6">5.2.3.2 当函数没有被引用</h5>
+
+<p>this指向null，但是浏览器不会让你这么干，它会把null变为global。</p>
+
+<p><strong>注：第5版的ECMAScript中，已经不强迫转换成全局变量了，而是赋值为undefined。</strong></p>
+
+<pre><code>(function (){
+    alert(this);//window
+})();
+</code></pre>
+
+<h3 id="evalthis">5.3 eval执行环境中的this</h3>
+<pre><code>eval('alert(this)');//window
+</code></pre>
+
+<h3 id="dom">5.4 让我们回想下DOM事件</h3>
+
+<h4 id="section-7">5.4.1 以节点对象的属性注册事件处理函数</h4>
+
+<p>以这个概念注册事件处理函数有2种实现方法，但是殊途同归——都是给节点对象的事件属性注册事件处理函数。</p>
+
+<h5 id="html">5.4.1.1 直接在html里写事件处理函数</h5>
+
+<pre><code>&lt;div onclick="alert(this.innerHTML);"&gt;1&lt;/div&gt;
+==&gt;'1'
+</code></pre>
+
+<h5 id="section-8">5.4.1.2 用对象特性写事件处理函数</h5>
+
+<pre><code>&lt;div id="J_Demo1"&gt;2&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    document.getElementById("J_Demo1").onclick = function () {
+        alert(this.innerHTML);//2
+    };
+&lt;/script&gt;
+</code></pre>
+
+<h4 id="addeventlistener--attachevent">5.4.2 addEventListener &amp; attachEvent</h4>
+
+<blockquote>
+  <p>其实说这2个方法对理解function的this有点跑偏，但是还是要标记下。</p>
+</blockquote>
+
+<p>2这不同的是addEventListener绑定事件处理函数后函数的this指向这个节点对象，attachEvent指向window（attachEvent存在于&lt;=IE8）。</p>
+
+<h2 id="test">6 Test</h2>
+
+<p>test1 </p>
+
+<p>有时候我们想这样做</p>
+
+<pre><code>var $=document.getElementById;//引用这个方法
+$("J_Head");//Illegal invocation 非法调用
+</code></pre>
+
+<p>为什么会这样呢？因为我们调用getElementById的方式不对。$()执行是getElementById的中的this指向的是window，用document.getElementById方式调用getElementById，其this指向的是document，原因已经说过了。所以…</p>
+
+<pre><code>$.apply(document,["login-container"]);//指定this指向对象就ok了
+(1,document.getElementById)();//Illegal invocation,连续运算符将getElementById已经从document中取出，执行时this指向null，进而指向global
+</code></pre>
+
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

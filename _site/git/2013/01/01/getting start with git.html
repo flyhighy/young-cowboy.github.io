@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/git/2013/01/01/getting%20start%20with%20git.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Getting Start With Git</h1>
+    <p class="post-meta">Jan 1, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="git">Git</h1>
+
+<blockquote>
+  <p>Linus Torvalds 开发的git真的是好东西~我怎么没能早点接触上它呢~	</p>
+</blockquote>
+
+<p>学习资料：</p>
+
+<ul>
+  <li><a href="http://www.slideshare.net/chacon/getting-git">getting-git</a></li>
+  <li><a href="http://marklodato.github.com/visual-git-guide/index-zh-cn.html">图解git</a></li>
+  <li><a href="http://baike.baidu.com/view/6097792.htm">Git权威指南</a></li>
+</ul>
+
+<p>查看每个命令的详细信息可以使用</p>
+
+<pre><code>git xx --help
+</code></pre>
+
+<h2 id="git-1">git相关的配置</h2>
+
+<h3 id="section">配置的作用域</h3>
+
+<pre><code>git config  xxxx	.git/config 文件
+git config --global xxxx ~/.gitconfig 文件
+git config --system xxxx // /etc/gitconfig 文件
+</code></pre>
+
+<p>三个option（null，global，system）分别对应于版本库，用户级别，系统级别。</p>
+
+<h3 id="alias">alias</h3>
+
+<pre><code>//为用户级别config配置一个别名
+git config --global alias.conf "config --global"
+//打开显示颜色
+git conf color.ui true
+//配置你的姓名
+git conf user.name "yingyi.zj"
+//配置你的邮箱
+git conf user.email "xxx.xxx"
+//配置一些简单的别名demo
+git conf alias.st status
+git conf alias.br branch
+git conf alias.com "commit -am"
+git conf alias.ch checkout
+git conf alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"
+git conf alias.rl "reflog"
+git conf alias.rs "reset"
+git conf alias.df "diff --stat"
+git conf alias.pl "pull"
+git conf alias.ps "push"
+</code></pre>
+
+<h3 id="section-1">查看已配置的信息</h3>
+
+<pre><code>git config --list
+</code></pre>
+
+<h2 id="concept">concept</h2>
+
+<h3 id="gitignore">gitignore</h3>
+
+<p>让git忽略文件或者目录，gitignore文件的语法如下：</p>
+
+<ul>
+  <li>所有空行或者以注释符号 ＃ 开头的行都会被 Git 忽略。</li>
+  <li>可以使用标准的 glob 模式匹配。</li>
+  <li>匹配模式最后跟反斜杠（/）说明要忽略的是目录。</li>
+  <li>要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（!）取反。</li>
+</ul>
+
+<h3 id="section-2">信息摘要</h3>
+
+<p>一个算法，可以将任意长度的信息转换为固定长度输出，并且对不同信息的摘要唯一。目前比较著名的实现算法有MD5与SHA1。当然转换后的信息重复的概率很小。</p>
+
+<p>在git中摘要是对commit，blob和tree进行SHA-1,用以比对是否产生文件差异。</p>
+
+<h3 id="section-3">裸版本库</h3>
+
+<p>只有版本库，没有工作区、缓冲区,配置为 core.bare=true</p>
+
+<pre><code>git init --bare xxxxx
+</code></pre>
+
+<p>默认情况下只能往裸版本库里推送信息。因为git会阻止你往一个非裸版本库里push sth，如果这样可行的话，非裸版本库的working directory的文件怎么办？</p>
+
+<h3 id="section-4">快进式推送</h3>
+
+<p>就是推送的版本库的提交是建立在远程版本库相应分支的提交基础上的，也就是说远程版本库的某个分支是本地的相应那个分支的父亲。默认下不允许非快进式推送。所以我们一般要先<strong>meger</strong>下，以防出现差异。</p>
+
+<pre><code>pull=fetch + meger
+</code></pre>
+
+<h3 id="gitconfig">.git/config文件</h3>
+
+<p>这个文件配置了一些分支特性：远程源，分支对应的源，是否忽略文件大小写，等等。可以使用git config –help查看详细</p>
+
+<pre><code>vim .git/config
+
+  1 [core]
+  2     repositoryformatversion = 0
+  3     filemode = true
+  4     bare = false
+  5     logallrefupdates = true
+  6     ignorecase = true
+  7 [remote "origin"]
+  8     fetch = +refs/heads/*:refs/remotes/origin/*
+  9     url = git@github.com:jan424/jan423.github.com.git
+ 10 [branch "master"]
+ 11     remote = jan
+ 12     merge = refs/heads/master
+ 13 [remote "jan"]
+ 14     url = /cygdrive/f/jan/
+ 15     fetch = +refs/heads/*:refs/remotes/jan/*
+</code></pre>
+
+<p>看出jan分支对应的远程分支为本地的某个版本库（/cygdrive/f/jan/）分支的jan分支。</p>
+
+<h2 id="usage">usage</h2>
+
+<h3 id="remote">remote</h3>
+
+<p>创建，修改remote的一些信息</p>
+
+<pre><code>git remote add [-t &lt;branch&gt;] [-m &lt;master&gt;] [-f] [--tags|--no-tags] [--mirror=&lt;fetch|push&gt;] &lt;name&gt; &lt;url&gt;
+
+-f创建好remote后。立即fetch远程信息
+-t&lt;branch&gt; 设置指定的fetch分支信息，可以设置多个branch
+-m&lt;master&gt; 设置master映射
+</code></pre>
+
+<h3 id="checkout">checkout</h3>
+
+<ul>
+  <li>修改HEAD指针指向的commit对象</li>
+  <li>
+    <p>修改HEAD指向的分支</p>
+
+    <pre><code>  git checkout [branch]
+</code></pre>
+  </li>
+  <li>
+    <p>从commit，index中检出文件</p>
+
+    <pre><code>  git checkout [-q][commit] [--] &lt;path&gt;
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="stash">stash</h3>
+
+<p>保存working directory和index的状态，用以后续恢复，最新创建好的stash对象hash会保存在.get/refs/stash文件里。</p>
+
+<pre><code>git stash save ...
+git stash list ...
+git apply|pop stash@{x}
+</code></pre>
+
+<h3 id="reset-reflog">reset 和reflog</h3>
+
+<p>reset是将以前的commit恢复到工作区或者缓冲区</p>
+
+<p>reflog是利用log文件将commit恢复到日志中某个状态</p>
+
+<h4 id="reset">reset</h4>
+<pre><code>//soft只改变commit对象
+//mixed只commit、暂存区而不改变工作区，默认为这个参数
+//hard改变所有区域
+git reset [--soft | --mixed | --hard ] [&lt;commit&gt;]
+git reset HEAD
+git reset HEAD^^
+</code></pre>
+
+<h4 id="reflog">reflog</h4>
+<p>reflog用来显示commit的历史，对应的文件位置在.git/logs文件夹里。</p>
+
+<pre><code>//默认为显示所有ref的commit历史。
+git reflog [show] [log-options] [&lt;ref&gt;]
+git reflog jan
+
+git reset --hard master@{3}
+</code></pre>
+
+<h3 id="section-5">跨平台</h3>
+
+<h4 id="git080quote">关闭Git对0×80以上的字符进行quote</h4>
+
+<pre><code>git config --global core.quotepath false
+</code></pre>
+
+<h4 id="git-2">关闭Git的大小写敏感</h4>
+
+<p>针对 *NIX，window平台对大小写敏感</p>
+
+<pre><code>git config --global core.ignorecase true
+</code></pre>
+
+<h4 id="crlfcr-lf">CRLF，CR ，LF</h4>
+
+<p>关闭自动转换CRLF和LF的功能，是怎么样就是怎么样提交到版本库</p>
+
+<pre><code>git config --global core.autocrlf false
+</code></pre>
+
+<p>开启自动转换：版本库的LF将自动转为CRLF，提交时eol转换为LF</p>
+
+<pre><code>git config --global core.autocrlf true
+</code></pre>
+
+<p>加入版本库全转换为LF，检出也转为LF</p>
+
+<pre><code>git config --global core.autocrlf input
+</code></pre>
+
+<p>so…</p>
+
+<p><strong>windows 平台设置为 true，*nix设置为input</strong></p>
+
+<p>添加LF和CRLF非可逆转的转换warming</p>
+
+<pre><code>git config --global core.safecrlf true //发现后直接拒绝提交
+git config --global core.safecrlf warn //发现后只warn，不阻止
+</code></pre>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

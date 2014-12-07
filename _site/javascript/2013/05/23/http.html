@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/javascript/2013/05/23/http.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">http协议浅学</h1>
+    <p class="post-meta">May 23, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="http">HTTP</h1>
+
+<h2 id="rest">REST</h2>
+
+<p>Representational State Transfer(表述性状态转移),语义化、规范化http method</p>
+
+<h3 id="http-method">http method</h3>
+
+<ul>
+  <li>GET：请求获取指定资源。</li>
+  <li>HEAD：请求指定资源的响应头。</li>
+  <li>POST：向指定资源提交数据。</li>
+  <li>PUT：请求服务器存储一个资源。</li>
+  <li>DELETE：请求服务器删除指定资源。</li>
+  <li>TRACE：回显服务器收到的请求，主要用于测试或诊断。</li>
+  <li>CONNECT：HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。</li>
+  <li>OPTIONS：返回服务器支持的HTTP请求方法。</li>
+</ul>
+
+<h4 id="section">安全的和幂</h4>
+
+<ul>
+  <li>安全的意味着该操作用于获取信息而非修改信息</li>
+  <li>幂等（idempotent、idempotence）是一个数学或计算机学概念，常见于抽象代数中。幂等的意味着对同一URL的多个请求应该返回同样的结果</li>
+</ul>
+
+<h4 id="get--post">get 和 post</h4>
+
+<h5 id="section-1">数据大小限制</h5>
+
+<p>URL不存在参数上限的问题，HTTP协议规范没有对URL长度进行限制。这个限制是特定的浏览器及服务器对它的限制。例如：IE对URL长度的限制是2083字节(2K+35)。而老式的代理可能执行最原始的URL长度限制，也就是255个字符。</p>
+
+<p>.理论上讲，POST是没有大小限制的，HTTP协议规范也没有进行大小限制，起限制作用的是服务器的处理程序的处理能力。</p>
+
+<p>IIS 6.0，微软出于安全考虑，加大了限制：</p>
+
+<ul>
+  <li>IIS 6.0默认ASP POST数据量最大为200KB，每个表单域限制是100KB。</li>
+  <li>IIS 6.0默认上传文件的最大大小是4MB。</li>
+  <li>IIS 6.0默认最大请求头是16KB。</li>
+</ul>
+
+<h5 id="section-2">数据位置</h5>
+
+<ul>
+  <li>get:请求链接中传递数据</li>
+  <li>post：请求报文的请求实体中保存数据</li>
+</ul>
+
+<h4 id="url">URL编码</h4>
+
+<p>RFC 1738没有规定具体的编码方法，而是交给应用程序（浏览器）自己决定。RFC 1738做了硬性规定：[0-9a-zA-Z]、一些特殊符号”$-_.+!*’(),”[不包括双引号]、以及某些保留字，才可以不经过编码直接用于URL。</p>
+
+<ul>
+  <li>
+    <p>网址路径的编码，用的是utf-8编码。</p>
+
+    <pre><code>  http://www.baidu.com/北京/index.php
+  http://www.baidu.com/%E5%8C%97%E4%BA%AC/index.php
+</code></pre>
+  </li>
+  <li>
+    <p>查询字符串的编码</p>
+
+    <pre><code>  http://www.baidu.com/s?wd=春节
+</code></pre>
+
+    <ul>
+      <li>
+        <p>ie 浏览器里的设置有一个选项为“发送utf-8编码url”，取消则为系统编码发送请求</p>
+
+        <pre><code>  Get /?s=\261\261\276\251
+</code></pre>
+      </li>
+      <li>
+        <p>firefox，chrome为utf-8编码发送url </p>
+
+        <pre><code>  GET /?s=%E7%99%BE%E5%BA%A6 
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>页面中的GET和POST方法编码，用的是网页的编码。</li>
+  <li>
+    <p>Ajax调用中get、post，IE总是采用操作系统的默认编码，而Firefox总是采用utf-8编码。</p>
+
+    <pre><code>  $.get("/i/list", {name : "淘宝"}, function (data) {});
+  $.post("/i/list", {name : "淘宝"}, function (data) {});
+</code></pre>
+
+    <ul>
+      <li>
+        <p>ie</p>
+
+        <pre><code>  Get /ilist?name=%cc%d4%b1%a6
+  Post name=%cc%d4%b1%a6
+</code></pre>
+      </li>
+      <li>
+        <p>firefox，chrome</p>
+
+        <pre><code>  Get /i/list?name=%E6%B7%98%E5%AE%9D
+  Post name=%E6%B7%98%E5%AE%9D
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/node/2013/03/20/node%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">nodejs 入门</h1>
+    <p class="post-meta">Mar 20, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="nodejs">nodejs</h1>
+
+<p>一个单线程、非阻塞的事件编程模式；</p>
+
+<p>参考资料</p>
+
+<ul>
+  <li><a href="http://www.infoq.com/cn/articles/what-is-nodejs?utm_source=infoq&amp;utm_medium=related_content_link&amp;utm_campaign=relatedContent_articles_clk">《深入浅出Node.js》</a></li>
+  <li>《深入理解计算机系统》</li>
+  <li>《Node.js开发指南》</li>
+  <li><a href="http://www.infoq.com/cn/articles/msh-using-npm-manage-node.js-dependence">《如何使用NPM来管理你的Node.js依赖》</a></li>
+</ul>
+
+<h2 id="section">一些概念</h2>
+
+<h3 id="io">计算机体系结构（i/o）</h3>
+
+<p><strong>I/O操作</strong>：cpu线程在执行中如果遇到磁盘读写或网络通信</p>
+
+<h4 id="io-1">同步 i/o</h4>
+
+<p>通常I/O要耗费较长的时间，这时操作系统会剥夺这个线程的 CPU 控制权，使其暂停执行，同时将资源让给其他的工作线程阻塞后，当 I/O 操作完毕时，操作系统将这个线程的阻塞状态解除，恢复其对CPU的控制权，令其继续执行。</p>
+
+<p><img src="/images/synchronous.jpg" alt="synchronous" /></p>
+
+<h4 id="io-2">异步 i/o</h4>
+
+<p>当线程遇到 I/O 操作时，不会以阻塞的方式等待 I/O 操作的完成或数据的返回，而只是将 I/O 请求发送给操作系统，继续执行下一条语句。当操作
+系统完成 I/O 操作时，以<strong>事件</strong>的形式通知执行 I/O 操作的线程，线程会在特定时候处理这个事件。为了处理异步 I/O，线程必须有<strong>事件循环</strong>，不断地检查有没有未处理的事件，依次予以处理。</p>
+
+<p><img src="/images/asynchronous.jpg" alt="asynchronous" /></p>
+
+<h4 id="section-1">优点和缺点</h4>
+
+<p>同步式 I/O（阻塞式）</p>
+
+<ul>
+  <li>利用多线程提供吞吐量				 	</li>
+  <li>通过事件片分割和线程调度利用多核CPU	 	</li>
+  <li>需要由操作系统调度多线程使用多核 CPU 	</li>
+  <li>难以充分利用 CPU 资源 			 	</li>
+  <li>内存轨迹大，数据局部性弱            	</li>
+  <li>符合线性的编程思维					 	</li>
+</ul>
+
+<p>异步式 I/O（非阻塞式）</p>
+
+<ul>
+  <li>单线程即可实现高吞吐量</li>
+  <li>通过功能划分利用多核CPU</li>
+  <li>可以将单进程绑定到单核 CPU</li>
+  <li>可以充分利用 CPU 资源</li>
+  <li>内存轨迹小，数据局部性强</li>
+  <li>不符合传统编程思维</li>
+</ul>
+
+<h2 id="nodejs-">nodejs 基本概念</h2>
+
+<h3 id="nodejs-1">nodejs</h3>
+
+<p>Node.js采用C++语言编写而成，是一个Javascript的<strong>运行环境</strong>。Node.js的设计思想中以<strong>事件驱动</strong>为核心，它提供的绝大多数API都是基于事件的、异步的风格。此类设计非常适合于后端的网络服务编程，Node.js的目标也在于此，重要的优势在于，充分利用了系统资源，执行代码无须阻塞等待某种操作完成</p>
+
+<p>javascript = ec + BOM + DOM</p>
+
+<p>nodejs = ec + 本地接口</p>
+
+<h3 id="module">module</h3>
+
+<p>模块就是一个文件，如何创建、引用、使用一个模块。</p>
+
+<p>exports为模块的对外接口，本质为空对象{};，require为获取模块方法。</p>
+
+<pre><code>//age.js
+var personAge = 20;
+exports.getAge = function () {
+    return personAge;
+};
+
+exports.setAge = function (age) {
+    personAge = age;
+};
+
+//readAge.js
+var age = require('./age');
+console.info(age.getAge());//20
+
+age.setAge("23");
+console.info(age.getAge());//23
+</code></pre>
+
+<p>exports 本质为空对象，我们可以覆盖这个引用</p>
+
+<pre><code>//age.js
+module.exports = {
+   	 personAge : 20,
+    getAge    : function () {
+        return this.personAge;
+    },
+    setAge    : function (age) {
+        this.personAge = age;
+    }
+};
+</code></pre>
+
+<p>不可以通过对 exports 直接赋值代替对 module.exports 赋值。exports 实际上只是一个和 module.exports 指向同一个对象的变量，它本身会在模块执行结束后释放，但 module 不会，因此只能通过指定module.exports 来改变访问接口。</p>
+
+<pre><code>module.exports===exports;//true
+exports---&gt;{}&lt;---module.exports
+</code></pre>
+
+<h4 id="section-2">模块加载机制</h4>
+
+<p>require方法接受以下几种参数的传递：</p>
+
+<ul>
+  <li>http、fs、path等，原生模块。</li>
+  <li>./mod或../mod，相对路径的文件模块。</li>
+  <li>/pathtomodule/mod，绝对路径的文件模块。</li>
+  <li>mod，非原生模块的文件模块。</li>
+</ul>
+
+<p>模块可以是js–&gt;json–&gt;node文件,</p>
+
+<p>下面总结一下使用 require(some_module) 时的加载顺序。</p>
+
+<ul>
+  <li>如果some_module以“ / ”、“ ./ ”或“ ../ ”开头，按路径加载 some_module，结束。</li>
+  <li>如果some_module 是一个核心模块（fs、http、net、vm），直接加载，结束。</li>
+  <li>假设当前目录为 current_dir，按路径加载 current_dir/node_modules/some_module。
+    <ul>
+      <li>如果加载成功，结束。</li>
+      <li>如果加载失败，令current_dir为其父目录。</li>
+      <li>重复这一过程，直到遇到根目录，抛出异常，结束。</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/images/require-step.jpg" alt="require step" /></p>
+
+<p>so 模块只会实例化一次</p>
+
+<pre><code>var age1 = require('./age');
+var age2 = require('./age');
+
+age1.setAge("23");
+console.info(age2.getAge());//23
+</code></pre>
+
+<h3 id="package">package</h3>
+
+<p>抽象概念为类库，将一系列功能打包起来，发布、更新等。</p>
+
+<p>一个符合CommonJS规范的包应该是如下这种结构：</p>
+
+<ul>
+  <li>一个package.json文件应该存在于包顶级目录下</li>
+  <li>二进制文件应该包含在bin目录下。</li>
+  <li>JavaScript代码应该包含在lib目录下。</li>
+  <li>文档应该在doc目录下。</li>
+  <li>单元测试应该在test目录下。</li>
+</ul>
+
+<p><strong>Node.js在没有找到目标文件时，会将当前目录当作一个包来尝试加载</strong>，所以在package.json文件中最重要的一个字段就是main。如果 package.json 或 main 字段不存在，会尝试寻找 index.js 或 index.node 作为包的接口。</p>
+
+<ul>
+  <li>name。包名，需要在NPM上是唯一的。不能带有空格。</li>
+  <li>description。包简介。通常会显示在一些列表中。</li>
+  <li>version。版本号。一个语义化的版本号（http://semver.org/ ），通常为x.y.z。该版本号十分重要，常常用于一些版本控制的场合。
+    <ul>
+      <li>说明 （例如 1.2.3）
+        <ul>
+          <li>主版本 1</li>
+          <li>副版本 2</li>
+          <li>补丁版本 3</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>keywords。关键字数组。用于NPM中的分类搜索。</li>
+  <li>maintainers。包维护者的数组。数组元素是一个包含name、email、web三个属性的JSON对象。</li>
+  <li>
+    <p>contributors。包贡献者的数组。第一个就是包的作者本人。在开源社区，如果提交的patch被merge进master分支的话，就应当加上这个贡献patch的人。格式包含name和email。如：</p>
+
+    <pre><code>  "contributors": [{
+      "name": "Jackson Tian",
+      "email": "mail @gmail.com"
+      }, {
+      "name": "fengmk2",
+      "email": "mail2@gmail.com"
+  }]
+</code></pre>
+  </li>
+  <li>bugs。一个可以提交bug的URL地址。可以是邮件地址（mailto:mailxx@domain），也可以是网页地址（http://url）。</li>
+  <li>
+    <p>licenses。包所使用的许可证。例如：</p>
+
+    <pre><code>  "licenses": [{
+      "type": "GPLv2",
+      "url": "http://www.example.com/licenses/gpl.html",
+  }]
+</code></pre>
+  </li>
+  <li>repositories。托管源代码的地址数组。</li>
+  <li>dependencies。当前包需要的依赖。这个属性十分重要，NPM会通过这个属性，帮你自动加载依赖的包。</li>
+</ul>
+
+<h3 id="npm">npm</h3>
+
+<p>Node Package Manager</p>
+
+<h4 id="npm-install">npm install命令</h4>
+
+<pre><code>npm [install/i] -g [package_name]
+</code></pre>
+
+<ul>
+  <li>
+    <p>全局路径，也就是带上参数 -g 的安装模式。这个命令会把模块安装在 $PREFIX/lib/node_modules 下，可通过命令 npm root -g 查看全局模块的安装目录。 package.json 里定义的bin会安装到 $PREFIX/bin 目录下，如果模块带有 man page 会安装到 $PREFIX/share/man 目录下。</p>
+
+    <pre><code>  $ npm root -g
+  C:\Users\xxxx\AppData\Roaming\npm\node_modules
+</code></pre>
+  </li>
+  <li>
+    <p>本地路径，不带 -g 参数的。从当前目录一直查找到根目录/下有没有 node_modules 目录，有模块安装到这个目录下的 node_modules 目录里，如果没有找到则把模块安装到当前目录 node_modules 目录下。package.josn 定义的 bin 会安装到 node_modules/.bin 目录下，man page 则不会安装。</p>
+  </li>
+</ul>
+
+<h4 id="npm-link">npm link命令</h4>
+
+<p>使用全局模式安装的包不能直接通过 require 使用，但通过 npm link命令可以打破这一限制。</p>
+
+<pre><code>Administrator@jan ~/mygit/study_nodejs/node_modules/speak
+
+$ npm link
+
+npm WARN package.json speak@0.0.1 No README.md file found!
+C:\Documents and Settings\Administrator\Application Data\npm\node_modules\speak -&gt; F:\workspace\mygit\study_nodejs\node_modules\speak
+</code></pre>
+
+<p>这样本地包就映射到全局包里去了。方便本地目录开发。如果这个时候有别的包依赖speak包。则可以在别的包的目录下</p>
+
+<pre><code>$ npm link speak
+</code></pre>
+
+<p>即可调用speak包。</p>
+
+<p><img src="/images/npm-link.jpg" alt="npm-link" /></p>
+
+<h2 id="nodejs-2">基于事件的nodejs</h2>
+
+<p>事件是单线程、异步编程nodejs的核心。</p>
+
+<p>模块：EventEmitter</p>
+
+<pre><code>var events = require('events');
+var emitter = new events.EventEmitter();
+emitter.on('someEvent', function(arg1, arg2) {
+	console.log('listener1', arg1, arg2);//listener1 byvoid 1991
+});
+emitter.on('someEvent', function(arg1, arg2) {
+	console.log('listener2', arg1, arg2);//listener2 byvoid 1991
+});
+emitter.emit('someEvent', 'byvoid', 1991);
+</code></pre>
+
+<p>通常我们会继承EventEmitter用在自己的模块里。</p>
+
+<pre><code>var events = require('events');
+var task = Object.create(events.EventEmitter.prototype);
+
+task.on('say', function () {
+    console.info(this.name);
+});
+task.emit('say');
+</code></pre>
+
+<h2 id="debug">debug</h2>
+
+<p>使用webstorm调试，方便、快捷。</p>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

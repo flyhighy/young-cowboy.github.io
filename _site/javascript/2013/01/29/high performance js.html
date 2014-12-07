@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/javascript/2013/01/29/high%20performance%20js.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Hight Performance JS</h1>
+    <p class="post-meta">Jan 29, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="hight-performance-js">Hight Performance JS</h1>
+
+<p>学习资料：</p>
+
+<ul>
+  <li><a href="http://baike.baidu.com/view/4720389.htm">高性能JavaScript</a></li>
+</ul>
+
+<h2 id="section">检测工具</h2>
+
+<h2 id="section-1">网络</h2>
+
+<h3 id="js">js下载</h3>
+
+<p>正常写入html的script标签只有执行完或者下载+执行完后才会让出资源给render或者其他资源下载，所以在这种情况下script的下载、解析会使其他资源（包括其他script资源）等待下载，渲染停止。</p>
+
+<p>但是在ie8+，firefox3.5+，safari4+，chrome2+允许script下载时不影响其他script下载。</p>
+
+<h3 id="defer">defer</h3>
+
+<p>IE4+,ff3.5+支持，告诉浏览器下载的脚本不会修改dom，下载的脚本不会阻塞其他资源下载（js、css、img），并且脚本将在domready时执行。</p>
+
+<h3 id="section-2">动态脚本</h3>
+
+<p>通过js创建的动态脚本连接的下载不会影响到页面其他处理。</p>
+
+<h2 id="dom">DOM</h2>
+
+<p>每次使用JS操作DOM很耗资源，追其根本是DOM与JS在实现上是分离开的，分别在2个处理环境中。</p>
+
+<h2 id="section-3">字符串</h2>
+
+<h3 id="section-4">拼接字符串</h3>
+
+<pre><code>str = "a" + "b" + "c";
+
+str = "a";
+str += "b";
+str += "c";
+
+str = ["a","b","c"].join("");
+
+str = "a";
+str = str.contat("b","c");
+</code></pre>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

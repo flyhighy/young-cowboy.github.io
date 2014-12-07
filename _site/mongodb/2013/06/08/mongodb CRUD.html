@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/mongodb/2013/06/08/mongodb%20CRUD.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">MongoDB CRUD</h1>
+    <p class="post-meta">Jun 8, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="mongodb">Mongodb</h1>
+
+<h2 id="crud">CRUD</h2>
+
+<h3 id="creat">creat</h3>
+
+<p>插入文档很简单，检测是否有_id、是否超过4mb，然后接卸为BSON。</p>
+
+<pre><code>db.user.insert(docuemnt)
+</code></pre>
+
+<h3 id="remove">remove</h3>
+
+<pre><code>db.user.remove(condition)
+</code></pre>
+
+<h3 id="update--upsert">update &amp; upsert</h3>
+
+<h4 id="section">普通查询后更新文档</h4>
+
+<h4 id="modifier">使用modifier</h4>
+
+<p>只修改文档的一部分的话，使用modifier修改文档效率更高。</p>
+
+<h4 id="setunset">$set,$unset</h4>
+
+<p>设置值，若不存在则插入新的，存在则更新</p>
+
+<pre><code>db.stu.update({age:12,name:"zj"},{"$set":{sex:"male"}})
+</code></pre>
+
+<p>删除值</p>
+
+<pre><code>db.stu.update({age:12,name:"zj"},{"$unset":{sex:1}})
+</code></pre>
+
+<h4 id="inc">$inc</h4>
+
+<p>在原先的整数，长整型，浮点的基础上加/减值</p>
+
+<pre><code>db.stu.update({age:12,name:"zj"},{"$inc":{age:10}})
+</code></pre>
+
+<h4 id="section-1">数组操作</h4>
+
+<h5 id="pushaddtoseteachpoppull">$push,$addToSet,$each,$pop,$pull,$</h5>
+
+<p>$push</p>
+
+<p>push一个数组</p>
+
+<pre><code>db.stu.update({age:22},{$push:{like:"apple"}})
+</code></pre>
+
+<p>addToSet具有set的属性，数组中有相似的就不push</p>
+
+<pre><code>db.stu.update({age:22},{$addToSet:{like:"apple"}})
+</code></pre>
+
+<p>pop使用个数从数组中删除元素，1表示尾，-1表示从头开始删除</p>
+
+<pre><code>db.stu.update({},{$pop:{like:1}})
+</code></pre>
+
+<p>pull使用的是查询条件，删除匹配</p>
+
+<pre><code> db.stu.update({age:22},{$pull:{"like":"orange"}})
+</code></pre>
+
+<h4 id="upsert">upsert</h4>
+
+<p>update 的第三个参数为true时表示改update为upsert，upsert的好处是将update &amp;&amp; insert 变为原子性。</p>
+
+<h3 id="retrieve">retrieve</h3>
+
+<h4 id="find">find</h4>
+
+<p>必须使用常量来进行查找</p>
+
+<pre><code>db.stu.find() //db.stu.find({})
+db.stu.find({age:22})
+db.stu.find({age:20,name:"Jan"})
+</code></pre>
+
+<h4 id="lt-ltegtgte-no">$lt, $lte,$gt,$gte, $no</h4>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

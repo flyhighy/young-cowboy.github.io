@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/javascript/2013/01/01/execution_context_test.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">javascript 执行环境探索 测试题</h1>
+    <p class="post-meta">Jan 1, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="execution-context">关于Execution Context的一些习题</h1>
+
+<pre><code>alert(typeof(f));//undefined
+alert(typeof(g));//undefined
+var g = function f() {
+    alert(f);
+}
+alert(typeof(g));//function ***
+function f(a) {
+    a = a;
+}
+f(1);
+alert(a); ***
+function f() {
+    arguments[2] = 3;
+    console.log(arguments);//[1,2]
+}
+f(1, 2);        ***
+//create function
+function foo() {} // 声明，因为它是程序的一部分
+
+var bar = function foo() {}; // 表达式，因为它是赋值表达式的一部分
+
+new function bar() {}; // 表达式，因为它是new表达式
+
+(function () {
+    function bar() {
+    } // 声明，因为它是函数体的一部分
+})();
+
+(function foo() {
+}); // 函数表达式：包含在分组操作符()内
+
+a=1,function f(){}；//函数表达式，在逗号运算符中都是表达式 ***
+//vo test1
+(function () {
+    alert(test);
+
+    function test() {
+    }
+})();
+
+//vo test2
+(function () {
+    alert(test);
+
+    var test = 10;
+    alert(test);
+
+    function test() {
+    }
+
+    alert(test);
+})();
+
+//vo test3
+(function () {
+    alert(test);
+
+    var test = 10;
+
+    alert(test);
+
+    var test = function () {
+    }
+
+    alert(test);
+})(); ***
+//[[scope]]test
+(function () {
+    var a = 1;
+
+    function f() {
+        var b = 2;
+        return a + b;
+    }
+
+    alert(f());
+})(); ***
+//closure test
+(function () {
+    var a = 1;
+
+    function f() {
+        var a = 2;
+        return function () {
+            return a;
+        }
+    }
+
+    var temp = f();
+
+    alert(temp());
+})(); ***
+//this test1
+(function () {
+    var o = {
+        a:1,
+        f:function () {
+            return this.a;
+        }
+    }
+
+    alert(o.f === o.f.prototype.constructor);
+    alert(o.f());
+    alert(o.f.prototype.constructor());
+
+})();
+
+//this test2
+(function () {
+    var o = {a:1};
+
+    function f() {
+        return this;
+    }
+
+    f.call(o);
+    f.apply(o);
+    f.call(null);
+    f.apply(null);
+
+})();
+
+//this test3
+(function () {
+    var object1 = {
+        a:1,
+        f:function () {
+            return this.a;
+        }
+    };
+
+    var object2 = {
+        a:2
+    };
+
+    alert(object1.f());
+
+    object2.f = object1.f;
+
+    alert(object2.f());
+
+})();
+</code></pre>
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

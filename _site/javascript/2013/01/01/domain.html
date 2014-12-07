@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/javascript/2013/01/01/domain.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">domain</h1>
+    <p class="post-meta">Jan 1, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="domain">Domain</h1>
+
+<p>由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（IP）。可以便于记忆和沟通的一组服务器的地址（<strong>网站，电子邮件，FTP等</strong>）。</p>
+
+<h2 id="section">构成</h2>
+
+<p>domain = [三级域名 + . + ] + 二级域名 + . + 顶级域名</p>
+
+<h3 id="section-1">顶级域名</h3>
+
+<p>国家顶级域名或者国际顶级域名</p>
+
+<h4 id="section-2">国家顶级域名</h4>
+
+<p>按照ISO3166国家代码分配的顶级域名，例如：中国是cn，美国是us</p>
+
+<h5 id="cn">.cn</h5>
+
+<p>中国的二级域名又分为<strong>类别域名</strong>和<strong>行政区域名</strong>两类</p>
+
+<p>包括用于科研机构的ac；用于工商金融企业的com；用于教育机构的edu；用于政府部门的 gov；用于互联网络信息中心和运行中心的net；用于非盈利组织的org。</p>
+
+<p>行政区域名有34个，分别对应于中国各省、自治区和直辖市。</p>
+
+<h4 id="section-3">国际顶级域名</h4>
+
+<p>表示工商企业的 .com，表示网络提供商的。net，表示非盈利组织的。org等</p>
+
+<h2 id="section-4">同源策略</h2>
+
+<p>浏览器的世界里为了安全有一个叫同源策略</p>
+
+<p>源 = 协议 + 主机 + 端口</p>
+
+<h3 id="section-5">不严格的同源策略</h3>
+
+<p>有时我们为了读取来自不同域名的文档的属性，必须修改域名。</p>
+
+<p>我们可以向着顶级域名的方向使用document.domain来减少域名长度，但<strong>减少后不能再变长</strong>。并且<strong>不能把domain设置为只有顶级域名</strong>。</p>
+
+<pre><code>document.domain //	"www.google.com.hk"
+
+document.domain="google.com"
+Error: SECURITY_ERR: DOM Exception 18
+
+document.domain="google.com.hk"
+"google.com.hk"
+
+document.domain="www.google.com.hk"
+Error: SECURITY_ERR: DOM Exception 18
+
+document.domain="com.hk"
+"com.hk"
+
+document.domain="hk"
+"hk"
+
+document.domain=""
+Error: SECURITY_ERR: DOM Exception 18	
+</code></pre>
+
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>

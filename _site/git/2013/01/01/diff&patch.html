@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title>小牛仔的blog</title>
+    <meta name="description" content="小牛仔的blog">
+    <link rel="stylesheet" href=" /css/main.css">
+    <link rel="canonical" href="http://yourdomain.com/git/2013/01/01/diff&patch.html">
+    <link rel="alternate" type="application/atom+xml" title="Your awesome title" href="http://yourdomain.com/feed.xml" />
+    <base target="_blank"/>
+</head>
+
+    <body>
+        <header class="site-header">
+    <div class="wrapper">
+        <a class="site-title" href="/">小牛仔的blog</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">diff & patch</h1>
+    <p class="post-meta">Jan 1, 2013</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="diffpatch">diff&amp;patch</h1>
+
+<p>在没有cvs的时代它们一直是很好的源码比较和打打补丁工具。</p>
+
+<h2 id="diff">1 diff</h2>
+<p>用<strong>逐行比较两个文本文件</strong>，列出其不同之处。</p>
+
+<h3 id="section">1.1 语法造成结构以及选项</h3>
+
+<p>语法：diff [选项] file1 file2</p>
+
+<p>常用选项：</p>
+
+<ul>
+  <li>-r 是一个递归选项，设置了这个选项，diff会将两个不同版本源代码目录中的所有对应文件全部都进行一次比较，包括子目录文件。</li>
+  <li>-w 忽略所有空格</li>
+  <li>-b 忽略由于空格属不同造成的差异</li>
+  <li>-B 忽略任何因空行而造成的差异。</li>
+  <li>-c 上下文模式输出diff</li>
+  <li>-u 合并模式输出diff</li>
+  <li>……</li>
+</ul>
+
+<h3 id="diff-1">1.2 diff输出模式的历史</h3>
+
+<p>要想理解现代的diff，看下diff历史是很有必要的。</p>
+
+<ul>
+  <li>正常模式（normal diff）</li>
+  <li>上下文格式（context diff）</li>
+  <li>合并格式（unified diff）</li>
+</ul>
+
+<p>这里我准备了2个文本a.txt，b.txt</p>
+
+<p>a.txt</p>
+
+<pre><code>window.onscroll = function () {
+    var top = document.documentElement.scrollTop || document.body.scrollTop;
+    if (top &gt; 586 &amp;&amp; !hasFixed) {
+        hasFixed = true;
+        if (isIE6) {
+            nav.style.top = top + 586 + "px";
+            return;
+        }
+        nav.className += ' mobile-download-fixed';
+        return;
+    }
+    if (top &lt; 586) {
+        hasFixed = false;
+        nav.className = 'mobile-download';
+    }
+}
+</code></pre>
+
+<p>b.txt</p>
+
+<pre><code>window.onscroll = function () {		
+    var top = document.documentElement.scrollTop || document.body.scrollTop;
+    if (top &gt; 586 &amp;&amp; !hasFixed) {
+        hasFixed = false;
+        nav.className += ' mobile-download-fixed';
+        return;
+    }
+    if (top &lt; 586) {
+        hasFixed = false;
+        nav.className = 'mobile-download';
+    }
+}
+alert('hello world');
+</code></pre>
+
+<p>可以看出我相对于a文件对b文件作了增，删，改操作；</p>
+
+<p>正常模式的diff输出结果很简单，但是结果过于简单很难理解。</p>
+
+<pre><code>$ diff a.txt b.txt
+1c1
+&lt; window.onscroll = function () {
+---
+&gt; window.onscroll = function () {
+4,8c4
+&lt;         hasFixed = true;
+&lt;         if (isIE6) {
+&lt;             nav.style.top = top + 586 + "px";
+&lt;             return;
+&lt;         }
+---
+&gt;         hasFixed = false;
+12c8,9
+&lt;     if (top &lt; 586) {
+---
+&gt;
+&gt;     if (top &lt; 586)      {
+16c13,14
+&lt; }
+\ 文件尾没有 newline 字符
+---
+&gt; }
+&gt; alert('hello world');
+\ 文件尾没有 newline 字符
+</code></pre>
+
+<p>所以诞生了context diff，让输出结果有上下文，这样好了解。</p>
+
+<pre><code>$ diff -c a.txt b.txt
+*** a.txt       2012-09-12 17:35:11.952861200 +0800
+--- b.txt       2012-09-12 17:54:13.569823400 +0800
+***************
+*** 1,16 ****
+! window.onscroll = function () {
+      var top = document.documentElement.scrollTop || document.body.scrollTop;
+      if (top &gt; 586 &amp;&amp; !hasFixed) {
+!         hasFixed = true;
+!         if (isIE6) {
+!             nav.style.top = top + 586 + "px";
+!             return;
+!         }
+          nav.className += ' mobile-download-fixed';
+          return;
+      }
+!     if (top &lt; 586) {
+          hasFixed = false;
+          nav.className = 'mobile-download';
+      }
+! }
+\ 文件尾没有 newline 字符
+--- 1,14 ----
+! window.onscroll = function () {
+      var top = document.documentElement.scrollTop || document.body.scrollTop;
+      if (top &gt; 586 &amp;&amp; !hasFixed) {
+!         hasFixed = false;
+          nav.className += ' mobile-download-fixed';
+          return;
+      }
+!
+!     if (top &lt; 586)      {
+          hasFixed = false;
+          nav.className = 'mobile-download';
+      }
+! }
+! alert('hello world');
+\ 文件尾没有 newline 字符
+</code></pre>
+
+<p>但是context diff输出浪费空间，所以之后诞生了合并模式,在一个输出里表明diff。</p>
+
+<pre><code>$ diff -u a.txt b.txt
+--- a.txt       2012-09-12 17:35:11.952861200 +0800
++++ b.txt       2012-09-12 17:54:13.569823400 +0800
+@@ -1,16 +1,14 @@
+-window.onscroll = function () {
++window.onscroll = function () {
+     var top = document.documentElement.scrollTop || document.body.scrollTop;
+     if (top &gt; 586 &amp;&amp; !hasFixed) {
+-        hasFixed = true;
+-        if (isIE6) {
+-            nav.style.top = top + 586 + "px";
+-            return;
+-        }
++        hasFixed = false;
+         nav.className += ' mobile-download-fixed';
+         return;
+     }
+-    if (top &lt; 586) {
++
++    if (top &lt; 586)      {
+         hasFixed = false;
+         nav.className = 'mobile-download';
+     }
+-}
+\ 文件尾没有 newline 字符
++}
++alert('hello world');
+\ 文件尾没有 newline 字符
+</code></pre>
+
+<p>合并模式可以让人对diff一目了然。</p>
+
+<h3 id="demo">1.3 demo演示</h3>
+
+<p>现在使用diff命令做一个最简单的合并模式diff输出</p>
+
+<pre><code>diff -u a.txt b.txt
+</code></pre>
+
+<p>使用统一格式输出差异，并且忽略空格。</p>
+
+<pre><code>--- a.txt       2012-09-12 17:35:11.952861200 +0800
++++ b.txt       2012-09-12 17:36:03.454861200 +0800
+@@ -1,11 +1,7 @@
+-window.onscroll = function () {
++window.onscroll = function () {
+     var top = document.documentElement.scrollTop || document.body.scrollTop;
+     if (top &gt; 586 &amp;&amp; !hasFixed) {
+-        hasFixed = true;
+-        if (isIE6) {
+-            nav.style.top = top + 586 + "px";
+-            return;
+-        }
++        hasFixed = false;
+         nav.className += ' mobile-download-fixed';
+         return;
+     }
+@@ -13,4 +9,5 @@
+         hasFixed = false;
+         nav.className = 'mobile-download';
+     }
+-}
+\ 文件尾没有 newline 字符
++}
++alert('hello world');
+\ 文件尾没有 newline 字符
+</code></pre>
+
+<h4 id="section-1">1.3.1 解释</h4>
+
+<p>第一，二行的—表示源文件，+++表示目标文件</p>
+
+<p>每个@@**@@表示一个差异的开始，其中的内容-1,11 +1,7表示原始文件的第一行，连续11行和目标文件第一行连续7行有差异（包括没有差异）。</p>
+
+<p>-:表示原始文件的行数</p>
+
+<p>+:表示目标文件的行数。</p>
+
+<p>以此类推.</p>
+
+<h2 id="patch">2 patch</h2>
+
+<p>patch命令相当于diff操作的逆过程，利用产生的diff来修复文件。</p>
+
+<h3 id="demo-1">2.1 简单的用法demo</h3>
+
+<pre><code>$ diff -u a.txt b.txt &gt; temp
+
+$ cat temp
+--- a.txt       2012-09-12 17:35:11.952861200 +0800
++++ b.txt       2012-09-12 19:04:33.373155300 +0800
+@@ -1,16 +1,14 @@
+ window.onscroll = function () {
+     var top = document.documentElement.scrollTop || document.body.scrollTop;
+     if (top &gt; 586 &amp;&amp; !hasFixed) {
+-        hasFixed = true;
+-        if (isIE6) {
+-            nav.style.top = top + 586 + "px";
+-            return;
+-        }
++        hasFixed = false;
+         nav.className += ' mobile-download-fixed';
+         return;
+     }
+-    if (top &lt; 586) {
++
++    if (top &lt; 586)      {
+         hasFixed = false;
+         nav.className = 'mobile-download';
+     }
+-}
+\ 文件尾没有 newline 字符
++}
++alert('hello world');
+\ 文件尾没有 newline 字符
+</code></pre>
+
+<p>这样我们就可以利用temp文件操作a.txt更新为b.txt或者将b.txt还原为a.txt</p>
+
+<pre><code>$ patch a.txt &lt; temp
+patching file a.txt
+Hunk #1 succeeded at 1 with fuzz 2.
+
+$ patch -R b.txt &lt; temp
+</code></pre>
+
+
+  </article>
+
+</div>
+
+            </div>
+        </div>
+        <footer class="site-footer"></footer>
+
+    </body>
+</html>
