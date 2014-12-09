@@ -16,7 +16,16 @@ $(function () {
         }
     });
 
-    $("#J_PostListWrap").on("scroll", function (e) {
-        e.stopPropagation();
+    $("#J_Arrow").on("click", function (e) {
+        var aside = $("#J_AsideWrap");
+        var node = $(this);
+        
+        if (node.hasClass("icon-arrow-full")) {
+            aside.removeClass("aside-wrap-hidden");
+            node.removeClass("icon-arrow-full");
+        } else {
+            aside.addClass("aside-wrap-hidden");
+            node.addClass("icon-arrow-full");
+        }
     });
 });

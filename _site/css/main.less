@@ -1,20 +1,30 @@
 html, body, .aside-wrap { height : 100%; }
 
+body {
+    overflow : hidden;
+}
 //common
 .hidden {
     display : none;
 }
+.has-trans {
+    transition : all 0.5s ease;
+}
 
 .aside-wrap {
-    width    : 517px;
-    float    : left;
-    overflow : hidden;
+    width       : 482px;
+    float       : left;
+    font-family : "Microsoft YaHei", simsun;
+    position    : relative;
+}
+.aside-wrap-hidden {
+    margin-left : -482px;
 }
 //头像
 .user-avatar {
-    width           : 100px;
-    height          : 100px;
-    margin          : 55px auto 35px;
+    width           : 90px;
+    height          : 90px;
+    margin          : 25px auto;
     background      : url(/images/user-avatar.jpg) center center;
     background-size : 100px 100px;
     border-radius   : 50%;
@@ -25,7 +35,7 @@ html, body, .aside-wrap { height : 100%; }
 
 //文章分类
 .sidebar {
-    width        : 165px;
+    width        : 130px;
     height       : 100%;
     background   : #474d57;
     border-right : 1px solid #3c4149;
@@ -36,7 +46,7 @@ html, body, .aside-wrap { height : 100%; }
         font-size : 16px;
 
         .category {
-            padding       : 10px 20px 9px;
+            padding       : 8px 10px;
             border-top    : 1px solid #525965;
             border-bottom : 1px solid #3c4149;
             cursor        : pointer;
@@ -91,5 +101,39 @@ html, body, .aside-wrap { height : 100%; }
             font-size : 12px;
             float     : right;
         }
+    }
+}
+
+//全屏按钮
+.icon-arrow {
+    speak                  : none;
+    font-variant           : normal;
+    text-transform         : none;
+    -webkit-font-smoothing : antialiased;
+    background-color       : rgba(250, 250, 250, 0.95);
+    position               : absolute;
+    right                  : -14px;
+    height                 : 40px;
+    width                  : 15px;
+    line-height            : 46px;
+    text-align             : center;
+    color                  : #7d8b99;
+    cursor                 : pointer;
+    top                    : 5px;
+    border                 : 1px solid #e5e8ec;
+    border-left            : 0px;
+    z-index                : 100;
+
+    &:before {
+        content     : "<";
+        margin-left : -1px;
+        font-size   : 16px;
+        line-height : 1;
+    }
+}
+
+.icon-arrow-full {
+    &:before {
+        content : ">";
     }
 }
