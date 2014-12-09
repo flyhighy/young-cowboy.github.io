@@ -19,7 +19,7 @@ $(function () {
     $("#J_Arrow").on("click", function (e) {
         var aside = $("#J_AsideWrap");
         var node = $(this);
-        
+
         if (node.hasClass("icon-arrow-full")) {
             aside.removeClass("aside-wrap-hidden");
             node.removeClass("icon-arrow-full");

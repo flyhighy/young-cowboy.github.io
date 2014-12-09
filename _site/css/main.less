@@ -2,6 +2,7 @@ html, body, .aside-wrap { height : 100%; }
 
 body {
     overflow : hidden;
+    display  : flex;
 }
 //common
 .hidden {
@@ -135,5 +136,15 @@ body {
 .icon-arrow-full {
     &:before {
         content : ">";
+    }
+}
+
+.markdown-ctn-wrap {
+    flex       : 1;
+    overflow-x : hidden;
+    overflow-y : scroll;
+
+    .markdown-ctn {
+        padding : 30px 5%;
     }
 }

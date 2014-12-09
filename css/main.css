@@ -5,6 +5,7 @@ body,
 }
 body {
   overflow: hidden;
+  display: flex;
 }
 .hidden {
   display: none;
@@ -119,4 +120,12 @@ body {
 }
 .icon-arrow-full:before {
   content: ">";
+}
+.markdown-ctn-wrap {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.markdown-ctn-wrap .markdown-ctn {
+  padding: 30px 5%;
 }

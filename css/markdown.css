@@ -1,10 +1,9 @@
-html { padding : 0; }
 
-body { margin : 0; padding : 0; background : #fff; }
-
-.epiceditor-wrapper { background : white; }
-
-.markdown-ctn { font-family : '\5FAE\8F6F\96C5\9ED1', '\5B8B\4F53', Helvetica, arial, freesans, clean, sans-serif; font-size : 13px; line-height : 1.6; }
+.markdown-ctn {
+    font-family : '\5FAE\8F6F\96C5\9ED1', '\5B8B\4F53', Helvetica, arial, freesans, clean, sans-serif;
+    font-size   : 16px;
+    line-height : 1.6;
+}
 
 .markdown-ctn a { color : #4183C4; text-decoration : none; }
 
@@ -85,7 +84,7 @@ body { margin : 0; padding : 0; background : #fff; }
 
 .markdown-ctn span.align-center { display : block; overflow : hidden; clear : both; }
 
-.markdown-ctn span.align-center>span { display : block; overflow : hidden; margin : 13px auto 0; text-align : center; }
+.markdown-ctn span.align-center > span { display : block; overflow : hidden; margin : 13px auto 0; text-align : center; }
 
 .markdown-ctn span.align-center span img { margin : 0 auto; text-align : center; }
 
@@ -102,7 +101,7 @@ body { margin : 0; padding : 0; background : #fff; }
 .markdown-ctn code,
 .markdown-ctn tt { margin : 0 2px; padding : 0 5px; white-space : nowrap; border : 1px solid #eaeaea; background-color : #f8f8f8; border-radius : 3px; }
 
-.markdown-ctn pre>code { margin : 0; padding : 0; white-space : pre; border : none; background : transparent; }
+.markdown-ctn pre > code { margin : 0; padding : 0; white-space : pre; border : none; background : transparent; }
 
 .markdown-ctn .highlight pre,
 .markdown-ctn pre { background-color : #0B0C09; color : #F8F8F2; border : 1px solid #ccc; font-size : 13px; line-height : 19px; overflow : auto; padding : 6px 10px; border-radius : 5px; }
