@@ -2,7 +2,7 @@
 layout: post
 title:  "HTML5 Drag & Drop"
 date:   2013-03-22
-categories: html5
+categories: html
 ---
 # Drag and Drop
 

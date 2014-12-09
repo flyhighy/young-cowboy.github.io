@@ -1,0 +1,26 @@
+<div class="sidebar">
+    <div class="user-avatar">
+
+    </div>
+    <ul class="categories-wrap" id="J_CategoryWrap">
+        <li class="category J_Category active">全部文章</li>
+        <li class="category J_Category" data-category="life">生活</li>
+        <li class="category J_Category" data-category="reading">读书</li>
+        <li class="category J_Category" data-category="css">CSS/CSS3</li>
+        <li class="category J_Category" data-category="html">HTML/HTML5</li>
+        <li class="category J_Category" data-category="javascript">JavaScript</li>
+        <li class="category J_Category" data-category="git">Git</li>
+        <li class="category J_Category" data-category="http">HTTP</li>
+        <li class="category J_Category" data-category="node">Node</li>
+        <li class="category J_Category" data-category="mongodb">MongoDB</li>
+    </ul>
+</div>
+<div class="post-list" id="J_PostListWrap">
+    <ul>
+        {% for post in site.posts %}
+        <li data-category="{{ post.categories }}" class="J_PostLinkWrap">
+            <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">{{ post.title }}<span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span></a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

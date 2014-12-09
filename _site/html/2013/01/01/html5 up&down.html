@@ -9,7 +9,7 @@
     <link rel="stylesheet" href=" /css/markdown.css">
     <link rel="stylesheet" href=" /css/main.css">
     <script type="text/javascript" src=" /js/jquery-2.0.3.min.js"></script>
-    <link rel="canonical" href="http://young-cowboy.github.io//javascript/2013/01/01/js%20basic.html">
+    <link rel="canonical" href="http://young-cowboy.github.io//html/2013/01/01/html5%20up&down.html">
     <link rel="alternate" type="application/atom+xml" title="young cowboy site" href="http://young-cowboy.github.io//feed.xml" />
     <base target="_blank"/>
 </head>
@@ -139,64 +139,68 @@
             <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">javascript 基础学习</h1>
+    <h1 class="post-title">《html5揭秘》学习笔记</h1>
     <p class="post-meta">Jan 1, 2013</p>
   </header>
 
   <article class="post-content">
-    <h1 id="javascript">Javascript基础</h1>
+    <h1 id="html5">《html5揭秘》学习笔记</h1>
 
-<h2 id="tag">tag</h2>
+<h2 id="section">一些基础的东西</h2>
 
-<h3 id="ie">IE的注释</h3>
+<h3 id="doctype">doctype</h3>
 
-<p>从<strong>IE5</strong>引入使用标签针对IE的注释。</p>
+<p>这个东西的诞生是因为IE5 for Mac支持标准化html的产物。先前的html编写是按照当时主流的ie4和netscape4开发的，由于这2款浏览器渲染模式是按照非标准来的（quirks模式），当一个浏览器ie5想按照标准渲染html问题就来了——以前的页面怎么办。</p>
 
-<pre><code>&lt;!--[if IE $version$]&gt;equal
-&lt;!--[if lte IE $version$]&gt;less than or equal
-&lt;!--[if lt IE $version$]&gt;less than 
-&lt;!--[if gte IE $version$]&gt;greater than or equal
-&lt;!--[if gt IE $version$]&gt;greater then ie6
-&lt;!--[if !IE $version$]&gt;not ie6
+<p>解决方案是在html文档第一行加入doctype，ie5会先检查是否有doctype而采用按照什么模式渲染html（存在doctype使用标准模式，不存在使用quirks模式）。</p>
 
-&lt;![endif]--&gt;
+<p>当mozila发布1.1浏览器时发现自己的引擎有些bug：虽然声明了doctype但是有些渲染还是按照quirks模式渲，当修复了这个bug后返现现在网络上的网页已经变得五花八门。没办法为了迎合网页渲染，又搞了个almost standard mode。</p>
+
+<p>Henri Sivonen 在他的大作“使用Doctype 激活浏览器的渲染模式”一文中作了总结</p>
+
+<blockquote>
+  <ul>
+    <li>
+      <p>Quirks</p>
+
+      <p>在这个模式中，浏览器违反了web格式规范，以避免那些依照90年代的流行做法编写的网页不至于被呈现得无法阅读</p>
+    </li>
+    <li>
+      <p>标准模式</p>
+
+      <p>在标准模式中，浏览器尽力尝试用符合标准规范的方式去渲染页面。html5中称为非quirks模式。</p>
+    </li>
+    <li>
+      <p>almost standard mode</p>
+
+      <p>ff，safari，chrome，opera和ie8也具有被称为almost standard mode，其中以传统方式实现了表格单元格的竖直尺寸，没有严格遵循css2规范，html5中讲这个模式称为limited quirks mode（有限quriks模式）</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>其实almost standard mode和standard mode相差不多。</p>
+
+<p>html5规定使用&lt;!doctype html&gt; doctype触发标准模式。</p>
+
+<p>*.dtd文档设定了文档的标记符的语法规则：嵌套关系，属性种类等等。</p>
+
+<p>关于doctype详细信息可以参照这个网站<a href="http://baike.baidu.com/view/1091028.htm">!DOCTYPE</a>。</p>
+
+<p><strong>总的来说是ie5为了支持标准web规范（standard mode）创造了doctype，mozila因为bug不幸创造了almost standard mode。为了产品的市场份额，浏览器做了很多兼容处理，并不是严格实施规范。</strong></p>
+
+<h2 id="meta">meta</h2>
+
+<p>这个是http response头里的一个信息，用来告诉浏览器传输的是什么类型的信息。</p>
+
+<pre><code>Content-Type:text/html; charset=GB2312
+Content-Type:text/css
+Content-Type:image/png
+Content-Type:application/x-javascript
+......
 </code></pre>
 
-<h3 id="type">type</h3>
+<p>这个meta和html中的meta相比，优先级更高。</p>
 
-<pre><code>&lt;script type="text/javascript"&gt;&lt;/script&gt;
-</code></pre>
-
-<ul>
-  <li>默认为text/javascript</li>
-  <li>老版本是使用language表示脚本类型，已淘汰</li>
-  <li>浏览器若<strong>不识别这个type</strong>则不解析其内容，但是会解析这个节点</li>
-</ul>
-
-<h3 id="cdata">&lt;![CDATA[…..]]&gt;</h3>
-
-<p>早起严格的XHTML模式会把script标签内容当成其他内容看待，如果其内容包含了&lt;,&gt;,&amp;就认为为xml标记，因此需要</p>
-
-<pre><code>&lt;![CDATA[script code]]&gt;
-</code></pre>
-
-<p>包含内容，以表示这个是数据。但现在有谁用xhtml的mine类型呢！淘汰之~</p>
-
-<h3 id="section">同源策略</h3>
-
-<p>源：协议，主机，端口</p>
-
-<p>浏览器的安全策略，标准的同源策略是不允许js访问非同源的文档，但是不是所有属性都无法访问，但是Document的所有属性基本无法访问。</p>
-
-<h4 id="iframe">iframe的非同源突破</h4>
-
-<p>设置相同的domain，但是domain必须要有“.”，不能设置com或者其他顶级域名。</p>
-
-<h4 id="postmessage">postMessage的非同源突破</h4>
-<p>html5</p>
-
-<h4 id="http-access-control-allow-origin">HTTP头 Access-Control-Allow-Origin的非同源突破</h4>
-<p>firefox safari 支持。</p>
 
   </article>
 

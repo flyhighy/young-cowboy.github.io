@@ -2,7 +2,7 @@
 layout: post
 title:  "CSS3 transform-matrix"
 date:   2013-01-01
-categories: css3
+categories: css
 ---
 # 深入理解transform的matrix
 

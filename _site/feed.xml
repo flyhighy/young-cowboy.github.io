@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
+    <title>young cowboy site</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 07 Dec 2014 21:26:50 +0800</pubDate>
-    <lastBuildDate>Sun, 07 Dec 2014 21:26:50 +0800</lastBuildDate>
+    <link>http://young-cowboy.github.io//</link>
+    <atom:link href="http://young-cowboy.github.io//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 09 Dec 2014 23:50:55 +0800</pubDate>
+    <lastBuildDate>Tue, 09 Dec 2014 23:50:55 +0800</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
@@ -67,11 +67,11 @@
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 20 Mar 2014 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/%E7%94%9F%E6%B4%BB/2014/03/20/%E4%B9%B0%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E7%9A%84%E6%95%85%E4%BA%8B.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/%E7%94%9F%E6%B4%BB/2014/03/20/%E4%B9%B0%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E7%9A%84%E6%95%85%E4%BA%8B.html</guid>
+        <link>http://young-cowboy.github.io//life/2014/03/20/%E4%B9%B0%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E7%9A%84%E6%95%85%E4%BA%8B.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//life/2014/03/20/%E4%B9%B0%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E7%9A%84%E6%95%85%E4%BA%8B.html</guid>
         
         
-        <category>生活</category>
+        <category>life</category>
         
       </item>
     
@@ -164,8 +164,8 @@ db.stu.find({age:20,name:&quot;Jan&quot;})
 &lt;h4 id=&quot;lt-ltegtgte-no&quot;&gt;$lt, $lte,$gt,$gte, $no&lt;/h4&gt;
 </description>
         <pubDate>Sat, 08 Jun 2013 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/mongodb/2013/06/08/mongodb%20CRUD.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/mongodb/2013/06/08/mongodb%20CRUD.html</guid>
+        <link>http://young-cowboy.github.io//mongodb/2013/06/08/mongodb%20CRUD.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//mongodb/2013/06/08/mongodb%20CRUD.html</guid>
         
         
         <category>mongodb</category>
@@ -287,8 +287,8 @@ mongoexport -d templates -c template -h 10.32.84.119:27017 -o  templates.txt
 &lt;p&gt;mongodb的document的一种数据结构，二进制JSON，用来保存数据，mongodb对齐BSON数据进行了优化。&lt;/p&gt;
 </description>
         <pubDate>Fri, 24 May 2013 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/mongodb/2013/05/24/geting%20start%20with%20mongo.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/mongodb/2013/05/24/geting%20start%20with%20mongo.html</guid>
+        <link>http://young-cowboy.github.io//mongodb/2013/05/24/geting%20start%20with%20mongo.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//mongodb/2013/05/24/geting%20start%20with%20mongo.html</guid>
         
         
         <category>mongodb</category>
@@ -407,8 +407,8 @@ mongoexport -d templates -c template -h 10.32.84.119:27017 -o  templates.txt
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 23 May 2013 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/javascript/2013/05/23/http.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/javascript/2013/05/23/http.html</guid>
+        <link>http://young-cowboy.github.io//javascript/2013/05/23/http.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//javascript/2013/05/23/http.html</guid>
         
         
         <category>javascript</category>
@@ -522,8 +522,8 @@ mongoexport -d templates -c template -h 10.32.84.119:27017 -o  templates.txt
 &lt;p&gt;一句概括之：无论是w3c的bfc还是ie的hasLayout都是把元素以及其子元素的渲染独立出来计算，不再受其他元素影响。&lt;/p&gt;
 </description>
         <pubDate>Thu, 25 Apr 2013 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/css/2013/04/25/BFC.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/css/2013/04/25/BFC.html</guid>
+        <link>http://young-cowboy.github.io//css/2013/04/25/BFC.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//css/2013/04/25/BFC.html</guid>
         
         
         <category>css</category>
@@ -581,8 +581,8 @@ mongoexport -d templates -c template -h 10.32.84.119:27017 -o  templates.txt
 
 </description>
         <pubDate>Sat, 30 Mar 2013 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/http/2013/03/30/cookie%E5%AD%A6%E4%B9%A0.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/http/2013/03/30/cookie%E5%AD%A6%E4%B9%A0.html</guid>
+        <link>http://young-cowboy.github.io//http/2013/03/30/cookie%E5%AD%A6%E4%B9%A0.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//http/2013/03/30/cookie%E5%AD%A6%E4%B9%A0.html</guid>
         
         
         <category>http</category>
@@ -625,11 +625,11 @@ mongoexport -d templates -c template -h 10.32.84.119:27017 -o  templates.txt
 &lt;p&gt;待续…&lt;/p&gt;
 </description>
         <pubDate>Fri, 29 Mar 2013 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/html5/2013/03/29/html5-filesystem.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/html5/2013/03/29/html5-filesystem.html</guid>
+        <link>http://young-cowboy.github.io//html/2013/03/29/html5-filesystem.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//html/2013/03/29/html5-filesystem.html</guid>
         
         
-        <category>html5</category>
+        <category>html</category>
         
       </item>
     
@@ -746,8 +746,8 @@ P:after //p内容之后
 &lt;p&gt;如果同为外部文件里的样式，选择器写法一样的情况下，后面的样式覆盖前面的&lt;/p&gt;
 </description>
         <pubDate>Fri, 29 Mar 2013 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/css/2013/03/29/css%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/css/2013/03/29/css%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80.html</guid>
+        <link>http://young-cowboy.github.io//css/2013/03/29/css%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//css/2013/03/29/css%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80.html</guid>
         
         
         <category>css</category>
@@ -889,11 +889,11 @@ for (var i in dnd) {
 &lt;/code&gt;&lt;/pre&gt;
 </description>
         <pubDate>Fri, 22 Mar 2013 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/html5/2013/03/22/drag-and-drop.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/html5/2013/03/22/drag-and-drop.html</guid>
+        <link>http://young-cowboy.github.io//html/2013/03/22/drag-and-drop.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//html/2013/03/22/drag-and-drop.html</guid>
         
         
-        <category>html5</category>
+        <category>html</category>
         
       </item>
     
@@ -1181,8 +1181,8 @@ task.emit(&#39;say&#39;);
 &lt;p&gt;使用webstorm调试，方便、快捷。&lt;/p&gt;
 </description>
         <pubDate>Wed, 20 Mar 2013 00:00:00 +0800</pubDate>
-        <link>http://yourdomain.com/node/2013/03/20/node%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/node/2013/03/20/node%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0.html</guid>
+        <link>http://young-cowboy.github.io//node/2013/03/20/node%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0.html</link>
+        <guid isPermaLink="true">http://young-cowboy.github.io//node/2013/03/20/node%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0.html</guid>
         
         
         <category>node</category>

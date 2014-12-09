@@ -9,7 +9,7 @@
     <link rel="stylesheet" href=" /css/markdown.css">
     <link rel="stylesheet" href=" /css/main.css">
     <script type="text/javascript" src=" /js/jquery-2.0.3.min.js"></script>
-    <link rel="canonical" href="http://young-cowboy.github.io//javascript/2013/01/01/js%20basic.html">
+    <link rel="canonical" href="http://young-cowboy.github.io//css/2013/01/01/css3-transform-matrix.html">
     <link rel="alternate" type="application/atom+xml" title="young cowboy site" href="http://young-cowboy.github.io//feed.xml" />
     <base target="_blank"/>
 </head>
@@ -139,64 +139,107 @@
             <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">javascript 基础学习</h1>
+    <h1 class="post-title">CSS3 transform-matrix</h1>
     <p class="post-meta">Jan 1, 2013</p>
   </header>
 
   <article class="post-content">
-    <h1 id="javascript">Javascript基础</h1>
+    <h1 id="transformmatrix">深入理解transform的matrix</h1>
 
-<h2 id="tag">tag</h2>
+<blockquote>
+  <p>数学真的是很重要。</p>
+</blockquote>
 
-<h3 id="ie">IE的注释</h3>
-
-<p>从<strong>IE5</strong>引入使用标签针对IE的注释。</p>
-
-<pre><code>&lt;!--[if IE $version$]&gt;equal
-&lt;!--[if lte IE $version$]&gt;less than or equal
-&lt;!--[if lt IE $version$]&gt;less than 
-&lt;!--[if gte IE $version$]&gt;greater than or equal
-&lt;!--[if gt IE $version$]&gt;greater then ie6
-&lt;!--[if !IE $version$]&gt;not ie6
-
-&lt;![endif]--&gt;
-</code></pre>
-
-<h3 id="type">type</h3>
-
-<pre><code>&lt;script type="text/javascript"&gt;&lt;/script&gt;
-</code></pre>
+<p>参考资料</p>
 
 <ul>
-  <li>默认为text/javascript</li>
-  <li>老版本是使用language表示脚本类型，已淘汰</li>
-  <li>浏览器若<strong>不识别这个type</strong>则不解析其内容，但是会解析这个节点</li>
+  <li><a href="http://zh.wikipedia.org/wiki/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2"><strong>仿射变换</strong></a></li>
+  <li><a href="http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/comment-page-1"><strong>blog</strong>(需要翻墙)</a></li>
 </ul>
 
-<h3 id="cdata">&lt;![CDATA[…..]]&gt;</h3>
+<p>要理解matrix是需要一定的数学矩阵功底的。我们知道调用transform的函数rotate，scale，skew，translate到最后其实都是调用了matrix函数，只是浏览器帮你转化了。</p>
 
-<p>早起严格的XHTML模式会把script标签内容当成其他内容看待，如果其内容包含了&lt;,&gt;,&amp;就认为为xml标记，因此需要</p>
+<p>首先我们要知道一个数学矩阵概念：<a href="http://zh.wikipedia.org/wiki/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2"><strong>仿射变换</strong></a>，就是这个矩阵实现了transform。</p>
 
-<pre><code>&lt;![CDATA[script code]]&gt;
+<p>这里有篇<a href="http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/comment-page-1"><strong>blog</strong></a>写的很好，它深入讲解了transform的matrix函数。</p>
+
+<p><strong>注意</strong> transform-origin的会影响一个图形的基本点，间接影响4个坐标。</p>
+
+<h2 id="section">例子</h2>
+
+<p><strong>注意</strong>：一个图形没有transform时其matrix的默认参数是（1,0,0,1,0,0），你可以使用调试工具查看。</p>
+
+<p>如果我们有一个图形（width:200px,height:100px），并且设置transform-origin:50% 50%。那么变换前4个坐标（<strong>相对于变形origin</strong>）为</p>
+
+<pre><code>(-100px,-50px)
+		|——————————|(100px,-50px)
+		|	  *    |
+		|——————————|(100px,50px)
+(-100px,50px)
 </code></pre>
 
-<p>包含内容，以表示这个是数据。但现在有谁用xhtml的mine类型呢！淘汰之~</p>
+<p>现在我们给它变换</p>
 
-<h3 id="section">同源策略</h3>
+<pre><code>transform:matrix(3,4,5,6,100px,50px);
+</code></pre>
 
-<p>源：协议，主机，端口</p>
+<p>先算左上角经过变换的坐标值，我们会生成2个矩阵：matrix的参数矩阵和原先坐标矩阵</p>
 
-<p>浏览器的安全策略，标准的同源策略是不允许js访问非同源的文档，但是不是所有属性都无法访问，但是Document的所有属性基本无法访问。</p>
+<pre><code>| 3 5 100 |  
+| 4 6 50  |   
+| 0 0  1  |   
 
-<h4 id="iframe">iframe的非同源突破</h4>
+| -100 | 
+|  -50 | 
+|  -50 | 
+|   1  |
+</code></pre>
 
-<p>设置相同的domain，但是domain必须要有“.”，不能设置com或者其他顶级域名。</p>
+<p><strong>注意</strong>：3<em>3的矩阵和1</em>3的矩阵最下一行的 0，0,1  0是因为数学概念<strong>仿射变换</strong>预设的。当时我也困惑了很久知道了解放射变换。</p>
 
-<h4 id="postmessage">postMessage的非同源突破</h4>
-<p>html5</p>
+<pre><code>| 3 5 100 |   | -100 |   | 3*-100+5*-50+100*1|   | -450 | 
+| 4 6 50  | * |  -50 | = | 4*-100+6*-50+50*1 | = | -650 |
+| 0 0  1  |   |   1  |   | 0*-100+0*-50+1*1  |	 |   1  |
+</code></pre>
 
-<h4 id="http-access-control-allow-origin">HTTP头 Access-Control-Allow-Origin的非同源突破</h4>
-<p>firefox safari 支持。</p>
+<p>所以左上角的新坐标为 （-450px，-650px）</p>
+
+<p>以此类推剩下的3个点坐标为</p>
+
+<p>右上</p>
+
+<pre><code>| 3 5 100 |   |  100 |   | 3*100+5*-50+100*1 |   |  150 | 
+| 4 6 50  | * |  -50 | = | 4*100+6*-50+50*1  | = |  150 |
+| 0 0  1  |   |   1  |   | 0*100+0*-50+1*1   |	 |   1  |
+</code></pre>
+
+<p>左下</p>
+
+<pre><code>| 3 5 100 |   | -100 |   | 3*-100+5*50+100*1 |   |   50 | 
+| 4 6 50  | * |   50 | = | 4*-100+6*50+50*1  | = |  -50 |
+| 0 0  1  |   |   1  |   | 0*-100+0*50+1*1   |	 |   1  |
+</code></pre>
+
+<p>右下</p>
+
+<pre><code>| 3 5 100 |   |  100 |   | 3*100+5*50+100*1  |   |  650 | 
+| 4 6 50  | * |   50 | = | 4*100+6*50+50*1   | = |  750 |
+| 0 0  1  |   |   1  |   | 0*-100+0*50+1*1   |	 |   1  |
+</code></pre>
+
+<p>所以新坐标为</p>
+
+<pre><code>(-450px,-650px)
+		|——————————|(150px,150px)
+		|	  .    |
+		|——————————|(650px,750px)
+(50px,-50px)
+</code></pre>
+
+<h3 id="section-1">关于那些内置函数</h3>
+
+<p>rotate，scale，skew，translate它们的参数最后都会转为matrix的参数，来变换。</p>
+
 
   </article>
 

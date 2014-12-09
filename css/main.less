@@ -1,0 +1,95 @@
+html, body, .aside-wrap { height : 100%; }
+
+//common
+.hidden {
+    display : none;
+}
+
+.aside-wrap {
+    width    : 517px;
+    float    : left;
+    overflow : hidden;
+}
+//头像
+.user-avatar {
+    width           : 100px;
+    height          : 100px;
+    margin          : 55px auto 35px;
+    background      : url(/images/user-avatar.jpg) center center;
+    background-size : 100px 100px;
+    border-radius   : 50%;
+    box-shadow      : 0 0 0px 4px white, 0 0 4px 4px #eee;
+    overflow        : hidden;
+    display         : block;
+}
+
+//文章分类
+.sidebar {
+    width        : 165px;
+    height       : 100%;
+    background   : #474d57;
+    border-right : 1px solid #3c4149;
+    box-shadow   : inset -15px 0 15px -15px #222;
+    float        : left;
+
+    .categories-wrap {
+        font-size : 16px;
+
+        .category {
+            padding       : 10px 20px 9px;
+            border-top    : 1px solid #525965;
+            border-bottom : 1px solid #3c4149;
+            cursor        : pointer;
+            color         : #a6a6a7;
+
+            &:hover {
+                color      : #f7f7f7;
+                background : #40464f;
+            }
+
+            &.active {
+                margin-right : -1px;
+                color        : #020202;
+                background   : #fafafa;
+                border-right : 1px solid #fafafa;
+                position     : relative;
+                transition   : none;
+            }
+        }
+    }
+}
+
+//文章列表
+.post-list {
+    width                      : 350px;
+    height                     : 100%;
+    background                 : rgba(250, 250, 250, 0.95);
+    border-right               : 1px solid #e5e8ec;
+    float                      : left;
+    position                   : relative;
+    overflow-x                 : auto;
+    overflow-y                 : scroll;
+    -webkit-overflow-scrolling : touch;
+
+    &::-webkit-scrollbar {
+        width : 1px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background : #c8ced6;
+    }
+
+    .post-link {
+        margin          : 4px 12px;
+        padding         : 4px 8px 3px;
+        border-radius   : 4px;
+        display         : block;
+        font-size       : 14px;
+        color           : #64717F;
+        text-decoration : none;
+
+        .post-date {
+            font-size : 12px;
+            float     : right;
+        }
+    }
+}

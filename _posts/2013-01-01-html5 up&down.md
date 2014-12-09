@@ -2,7 +2,7 @@
 layout: post
 title:  "《html5揭秘》学习笔记"
 date:   2013-01-01
-categories: html5
+categories: html
 ---
 # 《html5揭秘》学习笔记
 

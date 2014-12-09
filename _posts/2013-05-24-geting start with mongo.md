@@ -2,7 +2,7 @@
 layout: post
 title:  "Getting Start With Mongodb"
 date:   2013-05-24
-categories: Mongodb
+categories: mongodb
 ---
 # Getting Start With Mongodb
 
