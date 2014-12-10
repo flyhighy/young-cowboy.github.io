@@ -1,9 +1,11 @@
 <head>
+    <title>{% if page.title %}{{ page.title }}{% else %}小牛仔的blog{% endif %}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1">
-    <title>小牛仔的blog</title>
     <meta name="description" content="小牛仔的blog">
+    <meta name="baidu-site-verification" content="BkO3uOVKCT" />
+    <link rel="icon" href="{{ " /images/icon.ico" | prepend: site.baseurl }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ " /css/markdown.css" | prepend: site.baseurl }}">
     <link rel="stylesheet" href="{{ " /css/main.css" | prepend: site.baseurl }}">
     <script type="text/javascript" src="{{ " /js/jquery-2.0.3.min.js" | prepend: site.baseurl }}"></script>
