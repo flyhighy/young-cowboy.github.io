@@ -2,14 +2,33 @@
 layout: default
 ---
 <div class="post">
-
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
-  </header>
-
-  <article class="post-content">
-    {{ content }}
-  </article>
-
+    <header class="post-header">
+        <h1 class="post-title" style="font-size: 34px;">{{ page.title }}</h1>
+        <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    </header>
+    <div class="markdown-ctn-wrap">
+        <div class="markdown-ctn">
+            {{ content }}
+            <p>(完)</p>
+        </div>
+    </div>
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="{{ page.title }}" id="J_DSWrap"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        $("#J_DSWrap").attr("data-url", location.protocol + "//" + location.host + location.pathname);
+        $("#J_DSWrap").attr("data-thread-key", location.pathname);
+        var duoshuoQuery = {short_name : "young-cowboy"};
+        (function () {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0]
+                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共JS代码 end -->
 </div>

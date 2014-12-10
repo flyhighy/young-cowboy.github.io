@@ -121,11 +121,18 @@ body {
 .icon-arrow-full:before {
   content: ">";
 }
-.markdown-ctn-wrap {
+.post {
   flex: 1;
   overflow-x: hidden;
   overflow-y: scroll;
-}
-.markdown-ctn-wrap .markdown-ctn {
   padding: 30px 5%;
+}
+.post-header {
+  border-bottom: 2px solid #e5e8ec;
+}
+.post-title {
+  font-size: 34px;
+}
+.ds-thread {
+  margin-top: 50px;
 }
